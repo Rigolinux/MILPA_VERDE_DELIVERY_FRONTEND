@@ -5,6 +5,8 @@ import { Route,Routes } from "react-router-dom";
 
 import Login from './modules/login/views/Login';
 import User from './modules/user/views/User';
+import ProviderView from './modules/providers/Views/ProviderView';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +25,9 @@ function App() {
       <Routes>
         <Route path="/" element={<User />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/users" element={<User />} />
+        <Route path="/providers" element={<ProviderView />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
       
     </div>
