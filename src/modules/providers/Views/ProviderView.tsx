@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from '../../../interfaces/provider';
 import { getAllProviders } from '../../../api/provider';
+import ProviderCard from '../components/ProviderCard';
 
 const ProviderView = () => {
     const [providersList, setProvidersList] = React.useState<Provider[]>([]);
@@ -14,13 +15,7 @@ const ProviderView = () => {
     <>
     {
     providersList.map((provider) => (
-        <>
-        <div key={provider._id}>
-            <h5>{provider.ProviderName}</h5>
-            <p>{provider.mail}</p>
-        </div>
-            <br />
-        </>
+        <ProviderCard {...provider} />
     ))
     
     }
