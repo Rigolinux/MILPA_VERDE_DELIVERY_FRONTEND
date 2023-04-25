@@ -16,8 +16,8 @@ const Home = () => {
     <Link to="/users">Users</Link>
     <Link to="/providers">Providers</Link>
     <Routes>
-      <Route path="/users/*" element={<User />} />
-      <Route path="/providers/*" element={<ProviderView />} />
+      <Route path="/users/" element={<User />} />
+      <Route path="/providers/" element={<ProviderView />} />
     </Routes>
   </>
   )
