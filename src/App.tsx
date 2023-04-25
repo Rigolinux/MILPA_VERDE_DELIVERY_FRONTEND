@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
-import './App.css'
+
 import { Route,Routes } from "react-router-dom";
 
 
@@ -28,7 +28,7 @@ function App() {
       <div>
        
       </div>
-      <h1>Vite + React</h1>
+      <h1 className='bg-slate-800'>Vite + React</h1>
       <Routes>
           <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />} >
