@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 
-import { Route,Routes } from "react-router-dom";
+import { Route,Routes, useNavigate } from "react-router-dom";
 
 
 import Login from './modules/login/views/Login';
@@ -15,20 +15,17 @@ import ProtectedRoute from './Auth/useAuth';
 function App() {
   const [count, setCount] = useState(0)
   useEffect(() => {
-    const user = {
-        name: 'test',
-        email: ''
-    }
-    localStorage.setItem('user', JSON.stringify(user))
     
 }, [])
+
 
   return (
     <div className="App">
       <div>
        
       </div>
-      <h1 className='bg-slate-800'>Vite + React</h1>
+      <h1 className='text-center'>Milpa Verde</h1>
+      
       <Routes>
           <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />} >

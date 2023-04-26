@@ -6,20 +6,35 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { login } from '../../../api/auth';
+import { useNavigate } from 'react-router-dom';
+
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('user'),
-      password: data.get('password'),
+    
+    const user = {
+      username: data.get('user')?.toString() || '',
+      password: data.get('password')?.toString() || '',
+    };
+    
+    //insertar un sweet alert para que el usuario sepa que se esta logeando
+    login(user).then((res) => {
+     
+      localStorage.setItem('user', JSON.stringify(res));
+      navigate('/');
+       
+    })
+    .catch((err) => {
+      console.log(err);
     });
   };
 
@@ -36,7 +51,7 @@ export default function SignIn() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'green' }}>
-            <LockOutlinedIcon />
+          {/*   <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
