@@ -40,6 +40,7 @@ function App() {
             <Route path="/home/products" element={<View />} />
               <Route path="/users" element={<User />} />
               <Route path="/providers" element={<ProviderView />} />
+              <Route path="/providerts/:id" element={<Home />} />
         </Route>
       </Routes>
       

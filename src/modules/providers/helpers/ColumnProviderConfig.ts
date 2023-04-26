@@ -1,11 +1,13 @@
-import { GridColDef } from "@mui/x-data-grid";
+import {
+    GridColDef,
+  } from '@mui/x-data-grid';
 
 export const columns: GridColDef[] = [
  
     {
       field: 'ProviderName',
       headerName: 'Nombre del proveedor',
-      width: 250,
+      width: 175,
       editable: true,
     },
     {
@@ -29,9 +31,9 @@ export const columns: GridColDef[] = [
     {
       field: 'website',
       headerName: 'Sitio web',
-      width: 250,
+      width: 200,
       editable: true,
-    }
+    },
    /*  {
       field: 'fullName',
       headerName: 'Full name',
@@ -41,4 +43,5 @@ export const columns: GridColDef[] = [
       valueGetter: (params: GridValueGetterParams) =>
         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     }, */
+    
   ];
