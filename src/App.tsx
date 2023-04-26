@@ -21,12 +21,14 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App bg-dark">
       
       <h1 className='text-center'>Milpa Verde</h1>
-      // navbar anonimo
+      {/* // navbar anonimo
 
-      // navbar logeado
+      // navbar logeado 
+      
+      */}
 
 
       <Routes>
