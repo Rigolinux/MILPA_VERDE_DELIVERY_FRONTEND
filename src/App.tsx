@@ -21,7 +21,7 @@ function App() {
 
 
   return (
-    <div className="App bg-dark">
+    <div className="App  ">
       
       <h1 className='text-center'>Milpa Verde</h1>
       {/* // navbar anonimo
