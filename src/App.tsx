@@ -11,6 +11,7 @@ import Home from './modules/Home/views/Home';
 
 import ProtectedRoute from './Auth/useAuth';
 import View from './modules/Home/views/View';
+import NavBar from './modules/NavBar/NavBar'
 
 
 function App() {
@@ -21,15 +22,15 @@ function App() {
 
 
   return (
-    <div className="App bg-dark">
+    <div className="App">
       
-      <h1 className='text-center'>Milpa Verde</h1>
+      {/* <h1 className='text-center'>Milpa Verde</h1> */}
       {/* // navbar anonimo
 
       // navbar logeado 
       
       */}
-
+    <NavBar />
 
       <Routes>
           <Route path="/login" element={<Login />} />
