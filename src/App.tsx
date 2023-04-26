@@ -10,6 +10,7 @@ import ProviderView from './modules/providers/Views/ProviderView';
 import Home from './modules/Home/views/Home';
 
 import ProtectedRoute from './Auth/useAuth';
+import View from './modules/Home/views/View';
 
 
 function App() {
@@ -21,17 +22,22 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-       
-      </div>
-      <h1 className='text-center'>Milpa Verde</h1>
       
+      <h1 className='text-center'>Milpa Verde</h1>
+      // navbar anonimo
+
+      // navbar logeado
+
+
       <Routes>
           <Route path="/login" element={<Login />} />
+          
         <Route element={<ProtectedRoute />} >
-        <Route path="/" element={<Home />} />
-          <Route path="/users" element={<User />} />
-          <Route path="/providers" element={<ProviderView />} />
+
+            <Route path="/" element={<Home />} />
+            <Route path="/home/products" element={<View />} />
+              <Route path="/users" element={<User />} />
+              <Route path="/providers" element={<ProviderView />} />
         </Route>
       </Routes>
       
