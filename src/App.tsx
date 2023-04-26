@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div className="App">
+    <div className="App  ">
       
       {/* <h1 className='text-center'>Milpa Verde</h1> */}
       {/* // navbar anonimo
@@ -41,6 +42,7 @@ function App() {
             <Route path="/home/products" element={<View />} />
               <Route path="/users" element={<User />} />
               <Route path="/providers" element={<ProviderView />} />
+              <Route path="/providerts/:id" element={<Home />} />
         </Route>
       </Routes>
       
