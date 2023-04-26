@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react';
 import reactLogo from './assets/react.svg'
 
 import { Route,Routes, useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import Home from './modules/Home/views/Home';
 
 import ProtectedRoute from './Auth/useAuth';
 import View from './modules/Home/views/View';
-import NavBar from './modules/NavBar/NavBar'
+import NavBar from './modules/NavBar/NavBar';
 
 
 function App() {
@@ -23,7 +23,6 @@ function App() {
 
   return (
     <div className="App">
-    <div className="App  ">
       
       {/* <h1 className='text-center'>Milpa Verde</h1> */}
       {/* // navbar anonimo

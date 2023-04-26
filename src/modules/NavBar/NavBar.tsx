@@ -10,7 +10,7 @@ const MyNavbar: React.FC = () => {
         <Nav className="mr-auto">
           <Nav.Link href="#home">Inicio</Nav.Link>
           <Nav.Link href="#link">Acerca</Nav.Link>
-          <NavDropdown title="Products" id="basic-nav-dropdown">
+          <NavDropdown title="Products" id="basic-nav-dropdown" menuVariant="dark">
             <NavDropdown.Item href="#action/3.1">Productos</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
