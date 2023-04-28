@@ -2,39 +2,30 @@ import React from 'react'
 import { Provider } from '../../../interfaces/provider';
 import { getAllProviders } from '../../../api/provider';
 //import ProviderCard from '../components/ProviderCard';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLinkClickHandler } from 'react-router-dom';
 // Importando boostrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { Container } from '@mui/material';
-import { columns } from '../helpers/ColumnProviderConfig';
+
 import DeleteIcon from '@mui/icons-material/Delete';
-const  AddActiosn = [
-  ...columns,
-  {
-    field: 'actions',
-    type: 'actions',
-    width: 80,
-    getActions: (params:any ) => [
-      <GridActionsCellItem
-        icon={<DeleteIcon />}
-        label="Delete"
-        onClick={() =>console.log(params._id)}
-      />,
-     
-    ],
-  }
-]
+import EditIcon from '@mui/icons-material/Edit';
+import { GridColDef } from '@mui/x-data-grid';
+import { columns } from '../helpers/ColumnProviderConfig';
 
 
-
-
-const ProviderView = () => {
+ const ProviderView = () => {
   const navigate = useNavigate()
+  
     const [providersList, setProvidersList] = React.useState<Provider[]>([]);
 
   
 
+    const providerDetail = (params:any) => {
+     navigate(`/providers/${params.id}`);
+     
+    }
+    
     const logout = () => {
       localStorage.removeItem('user');
       navigate('/login');
@@ -45,6 +36,28 @@ const ProviderView = () => {
             setProvidersList(response);
         });
     }, []);
+
+    const  AddActiosn = React.useMemo<GridColDef[]>(() =>[
+      ...columns,
+      {
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        getActions: (params) => [
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={() =>console.log(params)}
+          />,
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            onClick={()=> providerDetail(params)}
+          />,
+        ],
+      }
+    ],
+    [providerDetail])
   return (
     <Container>
      <button 
@@ -80,5 +93,6 @@ const ProviderView = () => {
     </Container>
   )
 }
+
 
 export default ProviderView
