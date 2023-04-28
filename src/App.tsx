@@ -13,6 +13,7 @@ import ProtectedRoute from './Auth/useAuth';
 import View from './modules/Home/views/View';
 import NavBar from './modules/NavBar/NavBar';
 import ProviderDetails from './modules/providers/Views/ProviderDetails';
+import ProviderAdd from './modules/providers/Views/ProviderAdd';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/home/products" element={<View />} />
               <Route path="/users" element={<User />} />
               <Route path="/providers" element={<ProviderView />} />
+              <Route path="/providers/add" element={<ProviderAdd />} />
               <Route path="/providers/:id" element={<ProviderDetails   />} />
         </Route>
       </Routes>

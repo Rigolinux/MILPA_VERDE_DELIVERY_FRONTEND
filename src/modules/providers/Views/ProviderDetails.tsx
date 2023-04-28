@@ -66,7 +66,7 @@ const ProviderDetails = () => {
                         id='mobileNumber'
                         label="Teléfono del proveedor"
                         type='number'
-                        onChange={(e) => setProvider({...provider, mobileNumber: e.target.value})}
+                        onChange={(e) => setProvider({...provider, mobileNumber: parseInt(e.target.value)})}
                           value={provider?.mobileNumber}
                         />
                 

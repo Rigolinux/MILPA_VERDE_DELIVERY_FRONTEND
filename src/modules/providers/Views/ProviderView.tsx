@@ -1,12 +1,12 @@
 import React from 'react'
 import { Provider } from '../../../interfaces/provider';
-import { getAllProviders } from '../../../api/provider';
+import { getAllProviders,deleteOneProvider } from '../../../api/provider';
 //import ProviderCard from '../components/ProviderCard';
 import { useNavigate,useLinkClickHandler } from 'react-router-dom';
 // Importando boostrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import { Container } from '@mui/material';
+import { Button, Container } from '@mui/material';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,6 +20,15 @@ import { columns } from '../helpers/ColumnProviderConfig';
     const [providersList, setProvidersList] = React.useState<Provider[]>([]);
 
   
+    const deleteProvider = (params:any) => {
+      deleteOneProvider(params.id).then((response) => {
+        console.log(response);
+        const newList = providersList.filter((provider) => provider._id !== params.id);
+        setProvidersList(newList);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
 
     const providerDetail = (params:any) => {
      navigate(`/providers/${params.id}`);
@@ -43,11 +52,11 @@ import { columns } from '../helpers/ColumnProviderConfig';
         field: 'actions',
         type: 'actions',
         width: 80,
-        getActions: (params) => [
+        getActions: (params:any ) => [
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={() =>console.log(params)}
+            onClick={() => deleteProvider(params)}
           />,
           <GridActionsCellItem
             icon={<EditIcon />}
@@ -57,7 +66,7 @@ import { columns } from '../helpers/ColumnProviderConfig';
         ],
       }
     ],
-    [providerDetail])
+    [providerDetail,deleteProvider])
   return (
     <Container>
      <button 
@@ -65,7 +74,13 @@ import { columns } from '../helpers/ColumnProviderConfig';
       logout()
     }}
      type="button" className="btn btn-danger">LogOut</button>
-
+<button type='button' className='btn btn-success'
+  onClick={() => {
+    navigate('/providers/add')
+  }}
+>
+                Agregar un nuevo proveedor
+            </button>
      <DataGrid
         rows={providersList}
         getRowId={(row) => row._id} 
@@ -78,7 +93,7 @@ import { columns } from '../helpers/ColumnProviderConfig';
           },
         }}
         pageSizeOptions={[5]}
-        checkboxSelection
+       
         disableRowSelectionOnClick
       />
     {/*

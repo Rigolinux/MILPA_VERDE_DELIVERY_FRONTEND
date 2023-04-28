@@ -12,7 +12,16 @@ export const getAllProviders = async () => {
         return error;
     }
  };
-
+export const createProvider = async (data: Provider) => {
+    try {
+        const response = await api.post("/products/provider", data);
+        return response.data;
+    }
+    catch (error) {
+        console.log(error);
+        return error;
+    }
+};
  export const getProviderById = async (id: string) => {
     try {
         const response = await api.get(`/products/provider/${id}`);
@@ -46,3 +55,14 @@ export const getAllProviders = async () => {
         return error;
     }
  };
+
+    export const deleteOneProvider = async (id: string) => {
+        try {
+            const response = await api.delete(`/products/provider/${id}`);
+            return response.data;
+        }
+        catch (error) {
+            console.log(error);
+            return error;
+        }
+    };
