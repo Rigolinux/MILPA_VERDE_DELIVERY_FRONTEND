@@ -1,8 +1,8 @@
 export interface Provider {
-    _id: string;
+    _id?: string;
     ProviderName: string;
     mail: string;
-    mobileNumber?: string;
+    mobileNumber?: number;
     address?: string;
     website?: string;
 }
