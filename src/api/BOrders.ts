@@ -25,7 +25,7 @@ export const createBOrder = async (data:BOrders ) => {
 
 export const getBOrderHeaderById = async (id: string) => {
     try {
-        const response = await api.get(`/products/bordersheaders/${id}`);
+        const response = await api.get(`/products/bordersdetails/getbOrdH/${id}`);
         return response.data;
     }
     catch (error) {
@@ -35,4 +35,14 @@ export const getBOrderHeaderById = async (id: string) => {
 
 }
 
-export const 
+export const getBOrdetailById = async (id: string) => {
+    try {
+        const response = await api.get(`/products/bordersdetails/${id}`);
+        return response.data;
+    }
+    catch (error) {
+        console.log(error);
+        return error;
+    }
+
+}
