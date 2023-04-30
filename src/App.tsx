@@ -23,6 +23,7 @@ import ProductAdd from './modules/Product/views/ProductAdd';
 import UsersView from './modules/Users/views/UsersView';
 import UsersDetails from './modules/Users/views/UsersDetails';
 import UsersAdd from './modules/Users/views/UsersAdd';
+import About from './modules/About/About';
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
               <Route path="/products/:id" element={<ProductDetails />} /> */}
 
 
+              <Route path="/about" element={<About/>} />
         </Route>
       </Routes>
       
