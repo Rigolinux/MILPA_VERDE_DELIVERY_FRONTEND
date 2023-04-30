@@ -12,6 +12,7 @@ import Home from './modules/Home/views/Home';
 import ProtectedRoute from './Auth/useAuth';
 import View from './modules/Home/views/View';
 import NavBar from './modules/NavBar/NavBar'
+import About from './modules/About/About';
 
 
 function App() {
@@ -23,8 +24,7 @@ function App() {
 
   return (
     <div className="App">
-    <div className="App  ">
-      
+    
       {/* <h1 className='text-center'>Milpa Verde</h1> */}
       {/* // navbar anonimo
 
@@ -43,6 +43,7 @@ function App() {
               <Route path="/users" element={<User />} />
               <Route path="/providers" element={<ProviderView />} />
               <Route path="/providerts/:id" element={<Home />} />
+              <Route path="/about" element={<About/>} />
         </Route>
       </Routes>
       
