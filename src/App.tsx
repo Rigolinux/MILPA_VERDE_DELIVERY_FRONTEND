@@ -24,6 +24,7 @@ import UsersView from './modules/Users/views/UsersView';
 import UsersDetails from './modules/Users/views/UsersDetails';
 import UsersAdd from './modules/Users/views/UsersAdd';
 import About from './modules/About/About';
+import Banner from './modules/Home/Banner';
 
 
 function App() {
@@ -69,8 +70,8 @@ function App() {
               <Route path="/products/add" element={<ProductDetails />} />
               <Route path="/products/:id" element={<ProductDetails />} /> */}
 
-
               <Route path="/about" element={<About/>} />
+              <Route path="/banner" element={<Banner/>} />
         </Route>
       </Routes>
       
