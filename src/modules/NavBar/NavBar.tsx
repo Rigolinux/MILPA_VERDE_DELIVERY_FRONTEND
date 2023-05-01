@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import Home from '../Home/views/Home'; 
+import Home from '../NavBar/LogOutButton'; 
+import LogOut from "../NavBar/LogOutButton";
 
 const MyNavbar: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ const MyNavbar: React.FC = () => {
           </NavDropdown> */}
         </Nav>
         <div>
-          <Home />
+          <LogOut />
         </div>
       </Navbar.Collapse>
     </Navbar>
