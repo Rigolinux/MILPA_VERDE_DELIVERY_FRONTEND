@@ -6,7 +6,7 @@ import LogOut from "../NavBar/LogOutButton";
 const MyNavbar: React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
+      &nbsp;&nbsp;&nbsp;&nbsp;<Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
