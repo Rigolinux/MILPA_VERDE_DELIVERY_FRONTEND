@@ -1,12 +1,13 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import Home from '../Home/views/Home'; 
 
 const MyNavbar: React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
           <Nav.Link href="/banner">Inicio</Nav.Link>
           <Nav.Link href="/providers">Providers</Nav.Link>
@@ -27,6 +28,9 @@ const MyNavbar: React.FC = () => {
             </NavDropdown.Item>
           </NavDropdown> */}
         </Nav>
+        <div>
+          <Home />
+        </div>
       </Navbar.Collapse>
     </Navbar>
   );
