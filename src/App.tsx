@@ -37,6 +37,7 @@ function App() {
   const [login, setlogin] = useState(false)
   useEffect(() => {
     // add path register when is ready
+    console.log(import.meta.env.VITE_TEST)
     if(location.pathname === '/login' || location.pathname === '/register'){
       setlogin(true)
     }else{
