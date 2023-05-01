@@ -16,12 +16,26 @@ export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const password = data.get('password') as string;
+    const confirmPassword = data.get('confirmPassword') as string;
+    const error = validatePassword(password, confirmPassword);
+    if (error) {
+      alert(error);
+    } else {
+      console.log({
+        email: data.get('email'),
+        password: password,
+      });
+    }
   };
 
+  function validatePassword(password: string, confirmPassword: string): string | null {
+    if (password !== confirmPassword) {
+      return "Las contraseñas no coinciden";
+    }
+    return null;
+  }
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -91,6 +105,17 @@ export default function SignUp() {
                   label="Contraseña"
                   type="password"
                   id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirmar Contraseña"
+                  type="password"
+                  id="confirmPassword"
                   autoComplete="new-password"
                 />
               </Grid>
