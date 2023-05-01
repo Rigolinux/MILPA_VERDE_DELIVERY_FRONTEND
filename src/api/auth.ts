@@ -12,3 +12,14 @@ export const login = async (data: credeails) => {
     }
 
 };
+
+export const register = async (data: credeails) => {
+    try {
+        const response = await api.post("/auth/register", data);
+        return response.data;
+    }
+    catch (error) {
+        console.log(error);
+        return error;
+    }
+};

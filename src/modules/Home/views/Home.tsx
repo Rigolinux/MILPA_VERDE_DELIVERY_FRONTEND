@@ -19,6 +19,7 @@ const logout = () => {
   
   return (
     <>
+    
     <h1>Home</h1>
     <button 
     onClick={() => {
