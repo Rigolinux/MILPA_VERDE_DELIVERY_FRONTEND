@@ -19,13 +19,14 @@ const logout = () => {
   
   return (
     <>
+    
     <h1>Home</h1>
     <button 
     onClick={() => {
       logout()
     }}
      type="button" className="btn btn-danger">LogOut</button>&nbsp;&nbsp;&nbsp;&nbsp;
-    <Link to="/users">Users</Link>&nbsp;&nbsp;&nbsp;&nbsp;
+    {/* <Link to="/users">Users</Link>&nbsp;&nbsp;&nbsp;&nbsp; */}
     <Link to="/providers">Providers</Link>&nbsp;&nbsp;&nbsp;&nbsp;
     <Link to="/products">Products</Link>&nbsp;&nbsp;&nbsp;&nbsp;
     <Link to="/users">Users</Link>
@@ -34,6 +35,7 @@ const logout = () => {
       <Route path="/providers/" element={<ProviderView />} />
       <Route path="/products" element={<ProductView />} />
       <Route path="/users" element={<UserView />} />
+      <Route path="/orders" element={<Login />} />
     </Routes>
   </>
   )

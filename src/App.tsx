@@ -24,14 +24,24 @@ import UsersView from './modules/Users/views/UsersView';
 import UsersDetails from './modules/Users/views/UsersDetails';
 import UsersAdd from './modules/Users/views/UsersAdd';
 import About from './modules/About/About';
+import BOrderview from './modules/BOrders/views/BOrderview';
 import Banner from './modules/Home/Banner';
 
+import { useLocation } from 'react-router-dom';
+import Register from './modules/login/views/Register';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation();
+  
+  const [login, setlogin] = useState(false)
   useEffect(() => {
-    
-}, [])
+    // add path register when is ready
+    if(location.pathname === '/login' || location.pathname === '/register'){
+      setlogin(true)
+    }else{
+      setlogin(false)
+    }
+}, [location])
 
 
   return (
@@ -43,10 +53,13 @@ function App() {
       // navbar logeado 
       
       */}
-    <NavBar />
+    {
+      login ? null : <NavBar />
+    }
 
       <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           
         <Route element={<ProtectedRoute />} >
 
@@ -65,6 +78,8 @@ function App() {
               <Route path="/users" element={<UsersView />} />
               <Route path="/users/add" element={<UsersAdd />} />
               <Route path="/users/:id" element={<UsersDetails />} />
+
+              <Route path="/orders" element={<BOrderview/>} />
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
