@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { Product } from "../../../interfaces/product";
 import { createProduct } from "../../../api/product";
 import { useNavigate } from "react-router-dom";
@@ -27,36 +27,47 @@ const ProductAdd = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center">
-      <div style={{ padding: '50px', }}>
-        <form onSubmit={handlesubmit}>
-          
-          <TextField
-            id="name"
-            label="Nombre:"
-            type="text"
-            value={product?.name}
-            defaultValue={product?.name}
-            onChange={(e) => setProduct({...product, name: e.target.value})}
-          />
-          
-          <TextField
-            id="description"
-            label="Descripcion: "
-            type="text"
-            value={product?.description}
-            defaultValue={product?.description}
-            onChange={(e) => setProduct({...product, description: e.target.value})}
-          />
-          
-          <TextField
-            id="price"
-            label="Precio:"
-            type="number"
-            value={product?.price}
-            defaultValue={product?.price}
-            onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
-          />
+    <Container className="py-5">
+      <Row className="mb-4">
+        <Col>
+          <h2>Agregar productos</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Form onSubmit={handlesubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Nombre del producto</Form.Label>
+              <Form.Control
+                type="text"
+                //size="lg"
+                value={product?.name}
+                defaultValue={product?.name}
+                onChange={(e) => setProduct({...product, name: e.target.value})}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                type="text"
+                //size="lg"
+                value={product?.description}
+                defaultValue={product?.description}
+                onChange={(e) => setProduct({...product, description: e.target.value})}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                //size="lg"
+                value={product?.price}
+                defaultValue={product?.price}
+                onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
+              />
+            </Form.Group>
           
           {/* <TextField
             id="stock"
@@ -66,31 +77,33 @@ const ProductAdd = () => {
             defaultValue={product?.stock}
             onChange={(e) => setProduct({...product, stock: Number(e.target.value)})}
           /> */}
-          
-          <TextField
-            id="image"
-            label="Imagen: "
-            type="text"
-            value={product?.image}
-            defaultValue={product?.image}
-            onChange={(e) => setProduct({...product, image: e.target.value})}
-          />
-          
-          <TextField
-            id="category"
-            label="Categoria: "
-            type="text"
-            value={product?.category}
-            defaultValue={product?.category}
-            onChange={(e) => setProduct({...product, category: e.target.value})}
-          />
 
-          <Button className="btn btn-success" type="submit">
-            Guardar
-          </Button>
-        </form>
-      </div>
-    </div>
+            <Form.Group controlId="formFileMultiple" className="mb-3">
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Categoria</Form.Label>
+              <Form.Control
+                type="text"
+                //size="lg"
+                value={product?.category}
+                defaultValue={product?.category}
+                onChange={(e) => setProduct({...product, category: e.target.value})}
+              />
+            </Form.Group>
+
+              <div className="d-flex justify-content-end">
+                <Button className="btn btn-success" type="submit">
+                  Guardar
+                </Button>
+              </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+
   )
 
 };
