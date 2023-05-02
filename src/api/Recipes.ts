@@ -1,7 +1,7 @@
 import api from "./axios";
 
 
-export const getRecipes = async () => {
+export const getAllRecipes = async () => {
     try {
         const Recipes = await api.get("/inventory/recipes")
         return Recipes.data;

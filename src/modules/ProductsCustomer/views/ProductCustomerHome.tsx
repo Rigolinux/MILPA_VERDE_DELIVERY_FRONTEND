@@ -1,6 +1,6 @@
 import React from 'react'
 import { Recipes } from '../../../interfaces/Recipes'
-import { getRecipes } from '../../../api/Recipes'
+import { getAllRecipes } from '../../../api/Recipes'
 import ProductCard from '../components/ProductCard'
 import { Container } from '@mui/material'
 
@@ -9,7 +9,7 @@ const ProductCustomerHome = () => {
   ])
 
     React.useEffect(() => {
-        getRecipes().then((res) => {
+        getAllRecipes().then((res) => {
             setProducts(res)
             console.log(res)
         })

@@ -3,10 +3,10 @@ import reactLogo from './assets/react.svg'
 
 import { Route,Routes, useNavigate } from "react-router-dom";
 
-
 import Login from './modules/login/views/Login';
 // import User from './modules/user/views/User';
 import ProviderView from './modules/providers/Views/ProviderView';
+
 import Home from './modules/Home/views/Home';
 
 import ProtectedRoute from './Auth/useAuth';
@@ -26,6 +26,7 @@ import UsersAdd from './modules/Users/views/UsersAdd';
 import About from './modules/About/About';
 import BOrderview from './modules/BOrders/views/BOrderview';
 import Banner from './modules/Home/Banner';
+import ProductsOwnerview from './modules/productsOwner/views/productsOwnerview';
 
 import { useLocation } from 'react-router-dom';
 import Register from './modules/login/views/Register';
@@ -59,7 +60,9 @@ function App() {
       login ? null : <NavBar />
     }
 
+
       <Routes>
+        
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/articles" element={<ProductCustomerHome />} />
@@ -68,7 +71,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
-
+              <Route path="/manageArticles" element={<ProductsOwnerview />} />
               <Route path="/providers" element={<ProviderView />} />
               <Route path="/providers/add" element={<ProviderAdd />} />
               <Route path="/providers/:id" element={<ProviderDetails   />} />
@@ -86,7 +89,7 @@ function App() {
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
               <Route path="/products/:id" element={<ProductDetails />} /> */}
-
+              
               <Route path="/about" element={<About/>} />
               <Route path="/banner" element={<Banner/>} />
         </Route>
