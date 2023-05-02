@@ -2,8 +2,7 @@ import React from 'react';
 import { Provider } from '../../../interfaces/provider';
 import { useParams } from 'react-router-dom';
 import { getProviderById, updateProvider } from '../../../api/provider';
-import { Button, TextField } from '@mui/material';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 const ProviderDetails = () => {
@@ -49,80 +48,74 @@ const ProviderDetails = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
-        <Typography variant="h4" component="h1">
-          Detalles del proveedor
-        </Typography>
-      </Box>
-      <Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h6">Nombre del proveedor:</Typography>
-          <Typography sx={{ ml: 1 }}>{provider?.ProviderName}</Typography>
-        </Box>
+    <Container className="py-5">
+  <Row className="mb-4">
+    <Col>
+      <h1  className="text-center">Detalles del proveedor</h1>
+    </Col>
+  </Row>
+  <Row>
+    <Col>
+      <Form onSubmit={handlesubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Nombre del proveedor</Form.Label>
+          <Form.Control
+            type="text"
+            size="lg"
+            value={provider.ProviderName}
+            onChange={(e) => setProvider({ ...provider, ProviderName: e.target.value })}
+          />
+        </Form.Group>
 
-        <form onSubmit={handlesubmit}>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="h6">Dirección del proveedor:</Typography>
-              <TextField
-                id="address"
-                type="text"
-                defaultValue={provider?.address}
-                value={provider?.address}
-                onChange={(e) =>
-                  setProvider({ ...provider, address: e.target.value })
-                }
-              />
-            </Box>
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="h6">Teléfono del proveedor:</Typography>
-              <TextField
-                id="mobileNumber"
-                type="number"
-                value={provider?.mobileNumber}
-                onChange={(e) =>
-                  setProvider({
-                    ...provider,
-                    mobileNumber: parseInt(e.target.value),
-                  })
-                }
-              />
-            </Box>
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="h6">Correo del proveedor:</Typography>
-              <TextField
-                id="mail"
-                type="email"
-                defaultValue={provider?.mail}
-                value={provider?.mail}
-                onChange={(e) =>
-                  setProvider({ ...provider, mail: e.target.value })
-                }
-              />
-            </Box>
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="h6">Sitio web del proveedor:</Typography>
-              <TextField
-                id="website"
-                type="text"
-                value={provider?.website}
-                defaultValue={provider?.website}
-                onChange={(e) =>
-                  setProvider({ ...provider, website: e.target.value })
-                }
-              />
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button variant="contained" sx={{ bgcolor: 'success.main' }} type="submit">
-                Guardar cambios
-                </Button>
-            </Box>
-            </Box>
-        </form>
-        </Box>
-    </Container>
+        <Form.Group className="mb-3">
+          <Form.Label>Dirección del proveedor</Form.Label>
+          <Form.Control
+            type="text"
+            size="lg"
+            value={provider.address}
+            onChange={(e) => setProvider({ ...provider, address: e.target.value })}
+          />
+        </Form.Group>
 
+        <Form.Group className="mb-3">
+          <Form.Label>Teléfono del proveedor</Form.Label>
+          <Form.Control
+            type="number"
+            size="lg"
+            value={provider.mobileNumber}
+            onChange={(e) => setProvider({ ...provider, mobileNumber: parseInt(e.target.value) })}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Correo del proveedor</Form.Label>
+          <Form.Control
+            type="email"
+            size="lg"
+            value={provider.mail}
+            onChange={(e) => setProvider({ ...provider, mail: e.target.value })}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Sitio web del proveedor</Form.Label>
+          <Form.Control
+            type="text"
+            size="lg"
+            value={provider.website}
+            onChange={(e) => setProvider({ ...provider, website: e.target.value })}
+          />
+        </Form.Group>
+
+        <div className="d-flex justify-content-end">
+          <Button variant="success" size="lg" type="submit">
+            Guardar cambios
+          </Button>
+        </div>
+      </Form>
+    </Col>
+  </Row>
+</Container>
   )
 }
 

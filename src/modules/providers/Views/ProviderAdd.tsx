@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material'
 import React from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { Provider } from '../../../interfaces/provider'
@@ -29,7 +28,7 @@ const ProviderAdd = () => {
     <Container className="py-5">
       <Row className="mb-4">
         <Col>
-          <h1>Agregar proveedor</h1>
+          <h1  className="text-center">Agregar proveedor</h1>
         </Col>
       </Row>
       <Row>
