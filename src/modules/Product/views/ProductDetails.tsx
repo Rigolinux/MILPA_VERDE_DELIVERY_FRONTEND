@@ -2,7 +2,8 @@ import React from "react";
 import { Product } from "../../../interfaces/product";
 import { useParams } from "react-router-dom";
 import { getProductById, updateProduct } from "../../../api/product";
-import { Button, TextField } from "@mui/material";
+//import { Button, TextField } from "@mui/material";
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 import { useNavigate } from "react-router-dom";
 
@@ -47,67 +48,80 @@ const ProductDetails = () => {
   };
 
   return (
-    <div>
-      <h1>Detalles del producto</h1>
-      <div>
-        <h3>Nombre del producto: {product?.name}</h3>
-
-        <form onSubmit={handleSubmit}>
-
-          <TextField 
-            id="name"
-            label="Nombre: "
+    <Container className="py-5">
+  <Row className="mb-4">
+    <Col>
+      <h2 className="text-center">Detalles del producto</h2>
+    </Col>
+  </Row>
+  <Row>
+    <Col>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Nombre del producto</Form.Label>
+          <Form.Control
             type="text"
+            size="lg"
             defaultValue={product?.name}
             value={product?.name}
             onChange={(e) => setProduct({...product, name: e.target.value})}
           />
+        </Form.Group>
 
-          <TextField 
-            id="description"
-            label="Descripcion: "
+        <Form.Group className="mb-3">
+          <Form.Label>Descripción</Form.Label>
+          <Form.Control
             type="text"
+            size="lg"
             defaultValue={product?.description}
             value={product?.description}
             onChange={(e) => setProduct({...product, description: e.target.value})}
           />
+        </Form.Group>
 
-          <TextField
-            id="price"
-            label="Precio: "
+        <Form.Group className="mb-3">
+          <Form.Label>Precio</Form.Label>
+          <Form.Control
             type="number"
+            size="lg"
             onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
             value={product?.price}
             // defaultValue={product?.price}
           />
+        </Form.Group>
 
-          <TextField 
-            id="image"
-            label="Imagen: "
+        <Form.Group className="mb-3">
+          <Form.Label>Imagen</Form.Label>
+          <Form.Control
             type="text"
+            size="lg"
             defaultValue={product?.image}
             value={product?.image}
             onChange={(e) => setProduct({...product, image: e.target.value})}
           />
+        </Form.Group>
 
-          <TextField
-            id="category"
-            label="Categoria: "
+        <Form.Group className="mb-3">
+          <Form.Label>Categoria</Form.Label>
+          <Form.Control
             type="text"
+            size="lg"
             defaultValue={product?.category}
             value={product?.category}
             onChange={(e) => setProduct({...product, category: e.target.value})}
           />
-
-          <Button variant="contained" color="primary" type="submit">
-            Guardar
-          </Button>
-
-        </form>
-      </div>
-    </div>
+        </Form.Group>
+        
+          <div className="d-flex justify-content-end">
+            <Button variant="success" color="primary" size="lg" type="submit">
+              Guardar
+            </Button>
+          </div>
+        </Form>
+    </Col>
+  </Row>
+</Container>
   )
-
 }
 
 export default ProductDetails

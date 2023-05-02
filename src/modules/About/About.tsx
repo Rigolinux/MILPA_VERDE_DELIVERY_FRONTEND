@@ -5,7 +5,7 @@ import Acercaimg from './Acercaimg.jpg';
 const About = () => {
   return (
     <Container>
-      <Row className="mt-5 mb-4">
+      <Row className="mt-5 mb-4 d-flex align-items-center">
         <Col md={6} className="text-center">
           <h1 className="display-3 font-weight-bold">Acerca de nosotros</h1>
           <p className="lead">Somos un negocio de milpa verde que se dedica a la venta de burritos y quesadillas. Nuestros productos son elaborados con ingredientes frescos y de alta calidad.</p>

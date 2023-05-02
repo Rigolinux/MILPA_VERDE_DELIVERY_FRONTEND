@@ -40,7 +40,7 @@ const ProductAdd = () => {
               <Form.Label>Nombre del producto</Form.Label>
               <Form.Control
                 type="text"
-                //size="lg"
+                size="lg"
                 value={product?.name}
                 defaultValue={product?.name}
                 onChange={(e) => setProduct({...product, name: e.target.value})}
@@ -51,7 +51,7 @@ const ProductAdd = () => {
               <Form.Label>Descripción</Form.Label>
               <Form.Control
                 type="text"
-                //size="lg"
+                size="lg"
                 value={product?.description}
                 defaultValue={product?.description}
                 onChange={(e) => setProduct({...product, description: e.target.value})}
@@ -62,7 +62,7 @@ const ProductAdd = () => {
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 type="number"
-                //size="lg"
+                size="lg"
                 value={product?.price}
                 defaultValue={product?.price}
                 onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
@@ -78,16 +78,27 @@ const ProductAdd = () => {
             onChange={(e) => setProduct({...product, stock: Number(e.target.value)})}
           /> */}
 
-            <Form.Group controlId="formFileMultiple" className="mb-3">
+            {/* <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Imagen</Form.Label>
               <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
+            </Form.Group> */}
+
+            <Form.Group className="mb-3">
+              <Form.Label>Imagen</Form.Label>
+              <Form.Control
+                type="text"
+                size="lg"
+                defaultValue={product?.image}
+                value={product?.image}
+                onChange={(e) => setProduct({...product, image: e.target.value})}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
                 type="text"
-                //size="lg"
+                size="lg"
                 value={product?.category}
                 defaultValue={product?.category}
                 onChange={(e) => setProduct({...product, category: e.target.value})}
@@ -95,7 +106,7 @@ const ProductAdd = () => {
             </Form.Group>
 
               <div className="d-flex justify-content-end">
-                <Button className="btn btn-success" type="submit">
+                <Button className="btn btn-success" size="lg" type="submit">
                   Guardar
                 </Button>
               </div>
