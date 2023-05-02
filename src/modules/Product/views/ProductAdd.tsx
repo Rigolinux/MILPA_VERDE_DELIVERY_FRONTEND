@@ -30,7 +30,7 @@ const ProductAdd = () => {
     <Container className="py-5">
       <Row className="mb-4">
         <Col>
-          <h2>Agregar productos</h2>
+          <h2 className="text-center">Agregar productos</h2>
         </Col>
       </Row>
       <Row>

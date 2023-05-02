@@ -76,14 +76,14 @@ const UsersView = () => {
   return (
     <Container>
 
-      <div style={{ paddingTop: '10px', }}>
+      <div style={{ paddingTop: '20px', }}>
 
-        <button 
+        {/* <button 
           onClick = {() => {
             logOut();
           }}
           type="button" className="btn btn-danger">Cerrar sesion
-        </button>
+        </button> */}
 
         <button type='button' className="btn btn-success"
           onClick={() => {
@@ -94,7 +94,7 @@ const UsersView = () => {
 
       </div>
 
-      <div style={{ paddingTop: '50px', }}>
+      <div style={{ paddingTop: '40px', }}>
         <DataGrid
           rows={usersList}
           getRowId={(row) => row._id}

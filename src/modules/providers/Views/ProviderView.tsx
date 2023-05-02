@@ -69,18 +69,24 @@ import { columns } from '../helpers/ColumnProviderConfig';
     [providerDetail,deleteProvider])
   return (
     <Container>
-     <button 
+     {/* <button 
     onClick={() => {
       logout()
     }}
-     type="button" className="btn btn-danger">LogOut</button>
-<button type='button' className='btn btn-success'
-  onClick={() => {
-    navigate('/providers/add')
-  }}
->
-                Agregar un nuevo proveedor
-            </button>
+     type="button" className="btn btn-danger">LogOut</button> */}
+    <div style={{ paddingTop: '20px', }}>
+    
+      <button type='button' className='btn btn-success'
+        onClick={() => {
+          navigate('/providers/add')
+        }}>
+          Agregar un nuevo proveedor
+      </button>
+
+    </div>
+
+    <div style={{ paddingTop: '40px', }}>
+
      <DataGrid
         rows={providersList}
         getRowId={(row) => row._id} 
@@ -104,7 +110,8 @@ import { columns } from '../helpers/ColumnProviderConfig';
     
     {/* Creando boton por medio de boostrap */}
     
-    
+    </div>
+
     </Container>
   )
 }
