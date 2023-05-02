@@ -29,6 +29,7 @@ import Banner from './modules/Home/Banner';
 
 import { useLocation } from 'react-router-dom';
 import Register from './modules/login/views/Register';
+import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
 import Footer from './modules/Footer/Footer';
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
       <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+          <Route path="/articles" element={<ProductCustomerHome />} />
         <Route element={<ProtectedRoute />} >
 
             <Route path="/" element={<Home />} />
