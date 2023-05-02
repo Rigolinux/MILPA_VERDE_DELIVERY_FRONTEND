@@ -11,7 +11,7 @@ const MyNavbar: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
           <Nav.Link href="/banner">Inicio</Nav.Link>
-          <Nav.Link href="/providers">Providers</Nav.Link>
+          <Nav.Link href="/providers">Proveedores</Nav.Link>
           <Nav.Link href="/products">Productos</Nav.Link>
           <Nav.Link href="/users">Users</Nav.Link>
           <Nav.Link href="/About">Acerca</Nav.Link>
