@@ -7,6 +7,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Container } from '@mui/material';
 
+enum status {
+  InUse = "InUse",
+  Inactive = "Inactive",
+  use= "En uso",
+  inactive= "Inactivo"
+}
 
 const ProductsOwnerview = () => {
     const [recipes, setRecipes] = React.useState<Recipes[]>([]);
@@ -29,6 +35,13 @@ const ProductsOwnerview = () => {
                 }
                 if(recipe.Image.endsWith("que_carne.jpg")){
                     recipe.Image =  'Quesadilla de carne'
+                }
+
+                if(recipe.status == 'InUse'){
+                    recipe.status = status.use
+                }
+                else{
+                    recipe.status = status.inactive
                 }
                
             });

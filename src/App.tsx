@@ -48,15 +48,8 @@ function App() {
 }, [location])
 
 
-  const [footer, setfooter] = useState(false)
-  useEffect(() => {
-    // add path register when is ready
-    if(location.pathname === '/banner'){
-      setfooter(false)
-    }else{
-      setfooter(true)
-    }
-}, [location])
+
+ 
 
   return (
     <div className="App">
@@ -77,12 +70,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/articles" element={<ProductCustomerHome />} />
+              <Route path="/about" element={<About/>} />
+              <Route path="/banner" element={<Banner/>} />
         <Route element={<ProtectedRoute />} >
 
             <Route path="/" element={<Home />} />
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
-              <Route path="/manageArticles" element={<ProductsOwnerview />} />
+              <Route path="/managearticles" element={<ProductsOwnerview />} />
               <Route path="/providers" element={<ProviderView />} />
               <Route path="/providers/add" element={<ProviderAdd />} />
               <Route path="/providers/:id" element={<ProviderDetails   />} />
@@ -101,13 +96,11 @@ function App() {
               <Route path="/products/add" element={<ProductDetails />} />
               <Route path="/products/:id" element={<ProductDetails />} /> */}
               
-              <Route path="/about" element={<About/>} />
-              <Route path="/banner" element={<Banner/>} />
         </Route>
       </Routes>
 
       {
-      footer ? null : <Footer />
+      login ? null : <Footer />
       }
 
     </div>

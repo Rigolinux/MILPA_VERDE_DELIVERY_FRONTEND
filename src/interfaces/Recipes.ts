@@ -1,7 +1,9 @@
 
 enum status {
     InUse = "InUse",
-    Inactive = "Inactive"
+    Inactive = "Inactive",
+    use= "En uso",
+    inactive= "Inactivo"
 }
 
 export interface Recipes {
