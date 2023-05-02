@@ -72,14 +72,14 @@ const ProductView = () => {
   return (
     <Container>
       
-      <div style={{ paddingTop: '10px', }}>
+      <div style={{ paddingTop: '20px', }}>
 
-      <button 
+      {/* <button 
       onClick={() => { 
         logOut() 
         }} 
         type="button" className="btn btn-danger">LogOut 
-      </button>
+      </button> */}
 
       <button type='button' className="btn btn-success"
         onClick={() => {
@@ -90,7 +90,8 @@ const ProductView = () => {
 
       </div>
 
-      <div style={{ paddingTop: '50px', }}>
+      <div style={{ paddingTop: '40px', }}>
+        
       <DataGrid 
         rows={productList}
         getRowId={(row) => row._id}

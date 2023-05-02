@@ -31,6 +31,7 @@ import ProductsOwnerview from './modules/productsOwner/views/productsOwnerview';
 import { useLocation } from 'react-router-dom';
 import Register from './modules/login/views/Register';
 import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
+import Footer from './modules/Footer/Footer';
 
 function App() {
   const location = useLocation();
@@ -46,6 +47,16 @@ function App() {
     }
 }, [location])
 
+
+  const [footer, setfooter] = useState(false)
+  useEffect(() => {
+    // add path register when is ready
+    if(location.pathname === '/banner'){
+      setfooter(false)
+    }else{
+      setfooter(true)
+    }
+}, [location])
 
   return (
     <div className="App">
@@ -94,7 +105,11 @@ function App() {
               <Route path="/banner" element={<Banner/>} />
         </Route>
       </Routes>
-      
+
+      {
+      footer ? null : <Footer />
+      }
+
     </div>
   )
 }

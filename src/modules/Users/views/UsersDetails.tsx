@@ -2,7 +2,8 @@ import React from "react";
 import { Users } from "../../../interfaces/users";
 import { useParams } from "react-router-dom";
 import { getUserById, updateUser } from "../../../api/users";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import { Button, Container } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 
@@ -47,74 +48,72 @@ const UsersDetails = () => {
   };
 
   return (
-    <div>
-      <h1>Detalles del usuario</h1>
-      <div>
-        <h3>Nombre del usuario: {user?.name}</h3>
-
-        <form onSubmit={handleSubmit}>
-
-          <TextField
-            id="name"
-            label="Nombre: "
-            type="text"
-            value={user?.name}
-            defaultValue={user?.name}
-            onChange={(e) => setUser({...user, name: e.target.value})}
-          />
-
-          <TextField
-            id="lastname"
-            label="Apellido: "
-            type="text"
-            value={user?.lastname}
-            defaultValue={user?.lastname}
-            onChange={(e) => setUser({...user, lastname: e.target.value})}
-          />
-
-          <TextField
-            id="email"
-            label="Email: "
-            type="email"
-            value={user?.email}
-            defaultValue={user?.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-          />
-
-          <TextField
-            id="password"
-            label="Contraseña: "
-            type="password"
-            value={user?.password}
-            defaultValue={user?.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-          />
-
-          <TextField
-            id="username"
-            label="Nombre de usuario: "
-            type="text"
-            value={user?.username}
-            defaultValue={user?.username}
-            onChange={(e) => setUser({...user, username: e.target.value})}
-          />
-
-          {/* <TextField
-            id="role"
-            label="Rol: "
-            type="text"
-            value={user?.role}
-            defaultValue={user?.role}
-            onChange={(e) => setUser({...user, role: e.target.value})}
-          /> */}
-
-          <Button variant="contained" type="submit">
-            Actualizar
-          </Button>
-
-        </form>
-      </div>
+    <Container className="d-flex justify-content-center align-items-center flex-column">
+  <h1 className="mb-4">Detalles del usuario</h1>
+  <form onSubmit={handleSubmit} className="w-100">
+    <div className="d-flex flex-column mb-3">
+      <label htmlFor="name">Nombre:</label>
+      <TextField
+        id="name"
+        type="text"
+        value={user?.name}
+        defaultValue={user?.name}
+        onChange={(e) => setUser({ ...user, name: e.target.value })}
+      />
     </div>
+
+    <div className="d-flex flex-column mb-3">
+      <label htmlFor="lastname">Apellido:</label>
+      <TextField
+        id="lastname"
+        type="text"
+        value={user?.lastname}
+        defaultValue={user?.lastname}
+        onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+      />
+    </div>
+
+    <div className="d-flex flex-column mb-3">
+      <label htmlFor="email">Email:</label>
+      <TextField
+        id="email"
+        type="email"
+        value={user?.email}
+        defaultValue={user?.email}
+        onChange={(e) => setUser({ ...user, email: e.target.value })}
+      />
+    </div>
+
+    <div className="d-flex flex-column mb-3">
+      <label htmlFor="password">Contraseña:</label>
+      <TextField
+        id="password"
+        type="password"
+        value={user?.password}
+        defaultValue={user?.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+      />
+    </div>
+
+    <div className="d-flex flex-column mb-3">
+      <label htmlFor="username">Nombre de usuario:</label>
+      <TextField
+        id="username"
+        type="text"
+        value={user?.username}
+        defaultValue={user?.username}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
+      />
+    </div>
+
+    <div className="d-flex justify-content-end">
+      <Button variant="success" size="lg" type="submit">
+        Actualizar
+      </Button>
+    </div>
+  </form>
+</Container>
+
   )
 
 };
