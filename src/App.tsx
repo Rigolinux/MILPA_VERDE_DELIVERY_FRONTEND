@@ -32,6 +32,7 @@ import { useLocation } from 'react-router-dom';
 import Register from './modules/login/views/Register';
 import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
 import Footer from './modules/Footer/Footer';
+import PaymentView from './modules/paymentMethod/views/PaymentView';
 
 function App() {
   const location = useLocation();
@@ -91,6 +92,8 @@ function App() {
               <Route path="/users/:id" element={<UsersDetails />} />
 
               <Route path="/orders" element={<BOrderview/>} />
+
+              <Route path="/payment" element={<PaymentView />} />
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
