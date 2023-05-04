@@ -9,32 +9,51 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../../api/auth';
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate()
+  // Creando el metodo para crear un usuario
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const password = data.get('password') as string;
-    const confirmPassword = data.get('confirmPassword') as string;
-    const error = validatePassword(password, confirmPassword);
-    if (error) {
-      alert(error);
-    } else {
-      console.log({
-        email: data.get('email'),
-        password: password,
-      });
-    }
+    const user = {
+      username: data.get('username')?.toString() || '',
+      name: data.get('name')?.toString() || '',
+      lastname: data.get('lastname')?.toString() || '',
+      email: data.get('email')?.toString() || '',
+      password: data.get('password')?.toString() || '',
+      address: data.get('address')?.toString() || '',
+    };
+
+    register(user).then((res) => {
+      console.log(res);
+      alert('Usuario creado correctamente');
+      navigate('/login');
+    });
+
+    // const error = validatePassword(user.password, user.confirmPassword);
+
+    // if (error) {
+    //   alert(error);
+    // } else {
+    //   register(user).then((res) => {
+    //     console.log(res);
+    //     alert('Usuario creado correctamente');
+    //   });
+    // }
   };
 
-  function validatePassword(password: string, confirmPassword: string): string | null {
-    if (password !== confirmPassword) {
-      return "Las contraseñas no coinciden";
-    }
-    return null;
-  }
+
+  // function validatePassword(password: string, confirmPassword: string): string | null {
+  //   if (password !== confirmPassword) {
+  //     return "Las contraseñas no coinciden";
+  //   }
+  //   return null;
+  // }
   
   return (
     <ThemeProvider theme={theme}>
@@ -108,7 +127,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -118,7 +137,7 @@ export default function SignUp() {
                   id="confirmPassword"
                   autoComplete="new-password"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required

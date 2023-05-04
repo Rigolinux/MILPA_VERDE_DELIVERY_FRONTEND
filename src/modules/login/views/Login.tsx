@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../../../api/auth';
 import { useNavigate } from 'react-router-dom';
 
+//importando el sweet alert
+import Swal from 'sweetalert2';
+
 
 const theme = createTheme();
 
@@ -28,10 +31,64 @@ export default function SignIn() {
     
     //insertar un sweet alert para que el usuario sepa que se esta logeando
     login(user).then((res) => {
-     
-      localStorage.setItem('user', JSON.stringify(res));
-      navigate('/');
-       
+
+      // Validando con sweet alert si el usuario y la contraseña estan vacios
+      if(user.username === '' && user.password === '') {
+        Swal.fire({
+          icon: 'question',
+          title: 'Usuario y Contraseña Vacios',
+          text: '¡Por favor ingrese el usuario y la contraseña!',
+        })
+        console.log('Error: Usuario y Contraseña vacios');
+        return;
+      }
+      // Validando con sweet alert si el campo de usuario esta vacio
+      else if(user.username === ''){
+        Swal.fire({
+          icon: 'question',
+          title: 'Usuario Vacio',
+          text: '¡Por favor ingrese el usuario!',
+        })
+        console.log('Error: Usuario vacio');
+        return;
+      } 
+      // Validando con sweet alert si el campo de contraseña esta vacio
+      else if(user.password === ''){
+        Swal.fire({
+          icon: 'question',
+          title: 'Contraseña Vacia',
+          text: '¡Por favor ingrese la contraseña!',
+        })
+        console.log('Error: Contraseña vacia');
+        return;
+      }
+      // Validando con sweet alert si las credenciales son incorrectas
+      else if(res.token === undefined || res.token === null || res.status === 401 || res.status === 404 || res.status === 400){
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales Incorrectas',
+          text: '¡Por favor ingrese las credenciales correctas!',
+        })
+        console.log('Error: Credenciales Incorrectas');
+        return;
+      }
+      // Validando con sweet alert si las credenciales son correctas
+      else if(res.token !== undefined){
+        Swal.fire({
+          icon: 'success',
+          title: 'Credenciales Correctas',
+          text: '¡Bienvenido!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log('Credenciales Correctas');
+        localStorage.setItem('user', JSON.stringify(res));
+        // navigate('/');
+        navigate('/banner');
+      }
+      // localStorage.setItem('user', JSON.stringify(res));
+      // console.log(res);
+      // navigate('/');
     })
     .catch((err) => {
       console.log(err);
