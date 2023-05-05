@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 
-interface DepositFormProps {
-  onSubmit: (formData: FormData) => void;
-}
+
 
 interface FormData {
   bank: 'Agricola' | 'Promerica';
@@ -11,7 +9,7 @@ interface FormData {
   amount: number;
 }
 
-const DepositForm = ({ onSubmit }: DepositFormProps) => {
+const DepositForm = ({ onSubmit }: any) => {
   const [formData, setFormData] = useState<FormData>({
     bank: 'Agricola',
     transactionId: '',
