@@ -29,6 +29,16 @@ export default function SignUp() {
       address: data.get('address')?.toString() || '',
     };
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
+      alert('Por favor, ingrese un correo electrónico válido');
+      return;
+    }
+
+    if (!user.username || !user.name || !user.lastname || !user.email || !user.password || !user.address) {
+      alert('Por favor completa todos los campos');
+      return;
+    }
+  
     register(user).then((res) => {
       console.log(res);
       alert('Usuario creado correctamente');
@@ -114,6 +124,9 @@ export default function SignUp() {
                   label="Correo"
                   name="email"
                   autoComplete="email"
+                  inputProps={{
+                    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
