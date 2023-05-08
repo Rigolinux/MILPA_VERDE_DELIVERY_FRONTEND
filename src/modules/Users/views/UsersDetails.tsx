@@ -59,6 +59,7 @@ const UsersDetails = () => {
         value={user?.name}
         defaultValue={user?.name}
         onChange={(e) => setUser({ ...user, name: e.target.value })}
+        required
       />
     </div>
 
@@ -70,6 +71,7 @@ const UsersDetails = () => {
         value={user?.lastname}
         defaultValue={user?.lastname}
         onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+        required
       />
     </div>
 
@@ -81,6 +83,7 @@ const UsersDetails = () => {
         value={user?.email}
         defaultValue={user?.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
+        required
       />
     </div>
 
@@ -92,6 +95,7 @@ const UsersDetails = () => {
         value={user?.password}
         defaultValue={user?.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
+        required
       />
     </div>
 
@@ -103,6 +107,7 @@ const UsersDetails = () => {
         value={user?.username}
         defaultValue={user?.username}
         onChange={(e) => setUser({ ...user, username: e.target.value })}
+        required
       />
     </div>
 

@@ -19,8 +19,7 @@ const UsersAdd = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createUser(users)
-      .then((response) => {
+    createUser(users).then((response) => {
         console.log(response);
         navigate("/users");
       })
@@ -41,7 +40,9 @@ const UsersAdd = () => {
             value={users?.name}
             defaultValue={users?.name}
             onChange={(e) => setUsers({ ...users, name: e.target.value })}
+            required
           />
+          {!users?.name && <small className="text-danger">Este campo es obligatorio</small>}
         </div>
 
         <div className="d-flex flex-column mb-3">
@@ -52,7 +53,9 @@ const UsersAdd = () => {
             value={users?.lastname}
             defaultValue={users?.lastname}
             onChange={(e) => setUsers({ ...users, lastname: e.target.value })}
+            required
           />
+          {!users?.lastname && <small className="text-danger">Este campo es obligatorio</small>}
         </div>
 
         <div className="d-flex flex-column mb-3">
@@ -63,7 +66,9 @@ const UsersAdd = () => {
             value={users?.email}
             defaultValue={users?.email}
             onChange={(e) => setUsers({ ...users, email: e.target.value })}
+            required
           />
+          {!users?.email && <small className="text-danger">Este campo es obligatorio</small>}
         </div>
 
         <div className="d-flex flex-column mb-3">
@@ -74,7 +79,9 @@ const UsersAdd = () => {
             value={users?.password}
             defaultValue={users?.password}
             onChange={(e) => setUsers({ ...users, password: e.target.value })}
+            required
           />
+          {!users?.password && <small className="text-danger">Este campo es obligatorio</small>}
         </div>
 
         {/* <div className="d-flex flex-column mb-3">
@@ -96,7 +103,9 @@ const UsersAdd = () => {
             value={users?.username}
             defaultValue={users?.username}
             onChange={(e) => setUsers({ ...users, username: e.target.value })}
+            required
           />
+          {!users?.username && <small className="text-danger">Este campo es obligatorio</small>}
         </div>
 
         <div className="d-flex justify-content-end">
