@@ -48,9 +48,17 @@ function App() {
     }
 }, [location])
 
+  
+  const [footer, setfooter] = useState(false)
+  useEffect(() => {
+    //Conditions to validate footer only below banner view
+    if(location.pathname === '/banner'){
+      setfooter(false)
+    }else{
+      setfooter(true)
+    }
+}, [location])
 
-
- 
 
   return (
     <div className="App">
@@ -103,7 +111,7 @@ function App() {
       </Routes>
 
       {
-      login ? null : <Footer />
+      footer ? null : <Footer />
       }
 
     </div>

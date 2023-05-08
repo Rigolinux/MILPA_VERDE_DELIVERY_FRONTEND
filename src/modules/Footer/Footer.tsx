@@ -34,8 +34,6 @@ const Footer = () => {
                     <div className="title">Productos</div>
                     <span className="text">Burritos</span>
                     <span className="text">Quesadillas</span>
-                    <span className="text">Tortas</span>
-                    <span className="text">Tacos</span>
 
                 </div>
                 <div className="col">
