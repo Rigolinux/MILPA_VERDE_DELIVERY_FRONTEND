@@ -64,6 +64,7 @@ const ProviderDetails = () => {
             size="lg"
             value={provider.ProviderName}
             onChange={(e) => setProvider({ ...provider, ProviderName: e.target.value })}
+            required
           />
         </Form.Group>
 
@@ -74,16 +75,19 @@ const ProviderDetails = () => {
             size="lg"
             value={provider.address}
             onChange={(e) => setProvider({ ...provider, address: e.target.value })}
+            required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Teléfono del proveedor</Form.Label>
           <Form.Control
-            type="number"
+            type="tel"
             size="lg"
             value={provider.mobileNumber}
             onChange={(e) => setProvider({ ...provider, mobileNumber: parseInt(e.target.value) })}
+            pattern="[0-9]*"
+            required
           />
         </Form.Group>
 
@@ -94,16 +98,18 @@ const ProviderDetails = () => {
             size="lg"
             value={provider.mail}
             onChange={(e) => setProvider({ ...provider, mail: e.target.value })}
+            required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Sitio web del proveedor</Form.Label>
           <Form.Control
-            type="text"
+            type="url"
             size="lg"
             value={provider.website}
             onChange={(e) => setProvider({ ...provider, website: e.target.value })}
+            required
           />
         </Form.Group>
 
