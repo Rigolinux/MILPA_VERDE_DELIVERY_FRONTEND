@@ -15,10 +15,12 @@ import NavBar from './modules/NavBar/NavBar';
 import ProviderDetails from './modules/providers/Views/ProviderDetails';
 import ProviderAdd from './modules/providers/Views/ProviderAdd';
 
-
 import ProductView from './modules/Product/views/ProductView';
 import ProductDetails from './modules/Product/views/ProductDetails';
 import ProductAdd from './modules/Product/views/ProductAdd';
+
+// ACAAAAAAAAAAAAAAAAAAAAAA
+import SalesGraphicsView from './modules/SalesGraphics/views/SalesGraphicsView';
 
 import UsersView from './modules/Users/views/UsersView';
 import UsersDetails from './modules/Users/views/UsersDetails';
@@ -94,6 +96,8 @@ function App() {
               <Route path="/products"   element={<ProductView />} />
               <Route path="/products/add" element={<ProductAdd />} />
               <Route path="/products/:id" element={<ProductDetails />} />
+
+              <Route path="/sales" element={<SalesGraphicsView />} />
 
               <Route path="/users" element={<UsersView />} />
               <Route path="/users/add" element={<UsersAdd />} />
