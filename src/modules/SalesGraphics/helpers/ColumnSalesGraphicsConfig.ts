@@ -24,6 +24,16 @@ export const columns: GridColDef[] = [
     editable: false,
   },
 
+  // Columna DateOfBuy
+  {
+    field: 'dateOfbuy',
+    headerName: 'Fecha de Compra',
+    width: 175,
+    align: 'center',
+    headerAlign: 'center',
+    editable: false,
+  },
+
   // Columna Quantity
   {
     field: 'quantity',
