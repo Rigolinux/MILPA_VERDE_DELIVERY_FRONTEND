@@ -101,6 +101,11 @@ const ProductDetails = () => {
           />
         </Form.Group>
 
+        {/* <Form.Group controlId="formFileMultiple" className="mb-3">
+          <Form.Label>Imagen</Form.Label>
+          <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
+        </Form.Group> */}
+
         <Form.Group className="mb-3">
           <Form.Label>Categoria</Form.Label>
           <Form.Control
