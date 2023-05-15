@@ -78,12 +78,12 @@ const ProductAdd = () => {
             onChange={(e) => setProduct({...product, stock: Number(e.target.value)})}
           /> */}
 
-            {/* <Form.Group controlId="formFileMultiple" className="mb-3">
+            <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Imagen</Form.Label>
               <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
-            </Form.Group> */}
+            </Form.Group>
 
-            <Form.Group className="mb-3">
+            {/* <Form.Group className="mb-3">
               <Form.Label>Imagen</Form.Label>
               <Form.Control
                 type="text"
@@ -92,7 +92,7 @@ const ProductAdd = () => {
                 value={product?.image}
                 onChange={(e) => setProduct({...product, image: e.target.value})}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group className="mb-3">
               <Form.Label>Categoria</Form.Label>
