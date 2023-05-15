@@ -21,7 +21,8 @@ export interface SalesGraphics_SalesDetail {
   _id: string;
   ID_sale: string;
   ID_recipe: string;
-  dateOfbuy: Date;
+  // dateOfbuy: Date;
+  dateOfbuy: string;
   quantity: number;
   price: number;
   total: number;
