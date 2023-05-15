@@ -248,10 +248,10 @@ const SalesGraphicsView = () => {
   // console.log(salesGraphicsList);
 
   const funcionPrueba = () => {
-    console.log(salesGraphicsList, "Before");
+    // console.log(salesGraphicsList, "Before");
     setSalesGraphicsList(salesGraphicsList2);
     let x: SalesGraphics_SalesDetail[] = [];
-    console.log(salesGraphicsList2, "After");
+    // console.log(salesGraphicsList2, "After");
     console.log(x, "x");
 
     salesGraphicsList2.forEach((salesGraphics: SalesGraphics_SalesDetail) => {
