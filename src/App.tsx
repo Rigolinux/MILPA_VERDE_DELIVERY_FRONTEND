@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import reactLogo from './assets/react.svg'
 
-import { Route,Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route,Routes, useNavigate } from "react-router-dom";
 
 import Login from './modules/login/views/Login';
 // import User from './modules/user/views/User';
@@ -35,9 +35,11 @@ import Register from './modules/login/views/Register';
 import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
 import Footer from './modules/Footer/Footer';
 import PaymentView from './modules/paymentMethod/views/PaymentView';
+import { User } from './interfaces/User';
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   
   const [login, setlogin] = useState(false)
   useEffect(() => {
@@ -61,6 +63,15 @@ function App() {
     }
 }, [location])
 
+const verifyAuthentication = () => {
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser).user : "";
+  
+  if(user.role == 'admin'){
+    return true
+  }
+  return false
+}
 
   return (
     <div className="App">
@@ -88,10 +99,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
-              <Route path="/managearticles" element={<ProductsOwnerview />} />
-              <Route path="/providers" element={<ProviderView />} />
-              <Route path="/providers/add" element={<ProviderAdd />} />
-              <Route path="/providers/:id" element={<ProviderDetails   />} />
+              <Route path="/managearticles" element={ <ProductsOwnerview />} />
+              <Route path="/providers" element={ verifyAuthentication() ?  <ProviderView /> :<Navigate to="/banner" replace /> } />
+              <Route path="/providers/add" element={verifyAuthentication() ? <ProviderAdd /> :<Navigate to="/banner" replace /> } />
+              <Route path="/providers/:id" element={ verifyAuthentication() ? <ProviderDetails/> :<Navigate to="/banner" replace />  } />
 
               <Route path="/products"   element={<ProductView />} />
               <Route path="/products/add" element={<ProductAdd />} />
