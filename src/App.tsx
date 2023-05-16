@@ -100,23 +100,24 @@ const verifyAuthentication = () => {
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
               <Route path="/managearticles" element={ <ProductsOwnerview />} />
-              <Route path="/providers" element={ verifyAuthentication() ?  <ProviderView /> :<Navigate to="/banner" replace /> } />
-              <Route path="/providers/add" element={verifyAuthentication() ? <ProviderAdd /> :<Navigate to="/banner" replace /> } />
-              <Route path="/providers/:id" element={ verifyAuthentication() ? <ProviderDetails/> :<Navigate to="/banner" replace />  } />
+              <Route path="/providers"      element={ verifyAuthentication() ?  <ProviderView /> :    <Navigate to="/banner" replace /> } />
+              <Route path="/providers/add"  element={ verifyAuthentication() ?  <ProviderAdd /> :     <Navigate to="/banner" replace /> } />
+              <Route path="/providers/:id"  element={ verifyAuthentication() ?  <ProviderDetails/> :  <Navigate to="/banner" replace /> } />
 
-              <Route path="/products"   element={<ProductView />} />
-              <Route path="/products/add" element={<ProductAdd />} />
-              <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/products"     element={ verifyAuthentication() ?  <ProductView /> :     <Navigate to="/banner" replace /> } />
+              <Route path="/products/add" element={ verifyAuthentication() ?  <ProductAdd /> :      <Navigate to="/banner" replace /> } />
+              <Route path="/products/:id" element={ verifyAuthentication() ?  <ProductDetails /> :  <Navigate to="/banner" replace /> } />
 
-              <Route path="/sales" element={<SalesGraphicsView />} />
+              {/* <Route path="/sales" element={<SalesGraphicsView />} /> */}
+              <Route path="/sales" element={ verifyAuthentication() ?  <SalesGraphicsView /> : <Navigate to="/banner" replace /> } />
 
-              <Route path="/users" element={<UsersView />} />
-              <Route path="/users/add" element={<UsersAdd />} />
-              <Route path="/users/:id" element={<UsersDetails />} />
+              <Route path="/users"      element={ verifyAuthentication() ?  <UsersView /> :    <Navigate to="/banner" replace /> } />
+              <Route path="/users/add"  element={ verifyAuthentication() ?  <UsersAdd /> :     <Navigate to="/banner" replace /> } />
+              <Route path="/users/:id"  element={ verifyAuthentication() ?  <UsersDetails /> : <Navigate to="/banner" replace /> } />
 
-              <Route path="/orders" element={<BOrderview/>} />
+              <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
 
-              <Route path="/payment" element={<PaymentView />} />
+              <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/banner" replace /> } />
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
