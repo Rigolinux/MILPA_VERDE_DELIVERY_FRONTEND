@@ -2,7 +2,7 @@ import React from "react";
 import { Users } from "../../../interfaces/users";
 import { useParams } from "react-router-dom";
 import { getUserById, updateUser } from "../../../api/users";
-import { TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import { Button, Container } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const UsersDetails = () => {
     lastname: '',
     email: '',
     password: '',
-    // role: '',
+    role: '',
     username: '',
     _id: '',
   });
@@ -110,6 +110,19 @@ const UsersDetails = () => {
         required
       />
     </div>
+    <div className="d-flex flex-column mb-3">
+          <label htmlFor="username">Tipo de usuario:</label>
+          <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={user?.role}
+    label="Age"
+    onChange={(e) => setUser({ ...user, role: e.target.value })}
+  >
+    <MenuItem value={'user'}>Usuario</MenuItem>
+    <MenuItem value={'admin'}>Administrador</MenuItem>
+  </Select>
+        </div>
 
     <div className="d-flex justify-content-end">
       <Button variant="success" size="lg" type="submit">

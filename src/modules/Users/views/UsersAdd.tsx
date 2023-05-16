@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { Users } from "../../../interfaces/users";
@@ -13,7 +13,7 @@ const UsersAdd = () => {
     lastname: "",
     email: "",
     password: "",
-    // role: '',
+    role: 'user',
     username: "",
   });
 
@@ -106,6 +106,20 @@ const UsersAdd = () => {
             required
           />
           {!users?.username && <small className="text-danger">Este campo es obligatorio</small>}
+        </div>
+
+        <div className="d-flex flex-column mb-3">
+          <label htmlFor="username">Tipo de usuario:</label>
+          <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={users?.role}
+    label="Age"
+    onChange={(e) => setUsers({ ...users, role: e.target.value })}
+  >
+    <MenuItem value={'user'}>Usuario</MenuItem>
+    <MenuItem value={'admin'}>Administrador</MenuItem>
+  </Select>
         </div>
 
         <div className="d-flex justify-content-end">
