@@ -96,7 +96,7 @@ const verifyAuthentication = () => {
               <Route path="/banner" element={<Banner/>} />
         <Route element={<ProtectedRoute />} >
 
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={ <Navigate to="/banner" replace />} />
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
               <Route path="/managearticles" element={ <ProductsOwnerview />} />
