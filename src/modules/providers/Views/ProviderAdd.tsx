@@ -1,8 +1,9 @@
-import React from 'react';
-import { Button, Col, Container, Modal, Form, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Provider } from '../../../interfaces/provider';
 import { createProvider } from '../../../api/provider';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ProviderAdd = () => {
   const navigate = useNavigate();
@@ -19,10 +20,23 @@ const ProviderAdd = () => {
     createProvider(provider)
       .then((response) => {
         console.log(response);
-        navigate('/providers');
+        Swal.fire({
+          icon: 'success',
+          title: 'Proveedor agregado',
+          text: 'El proveedor ha sido agregado exitosamente.',
+          confirmButtonText: 'Aceptar'
+        }).then(() => {
+          navigate('/providers');
+        });
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al agregar el proveedor.',
+          confirmButtonText: 'Aceptar'
+        });
       });
   };
 
@@ -45,7 +59,6 @@ const ProviderAdd = () => {
                 onChange={(e) => setProvider({ ...provider, ProviderName: e.target.value })}
                 required
               />
-              {!provider.ProviderName && <small className="text-danger">Este campo es obligatorio</small>}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -57,7 +70,6 @@ const ProviderAdd = () => {
                 onChange={(e) => setProvider({ ...provider, address: e.target.value })}
                 required
               />
-              {!provider.address && <small className="text-danger">Este campo es obligatorio</small>}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -67,10 +79,9 @@ const ProviderAdd = () => {
                 size="lg"
                 value={provider.mobileNumber}
                 onChange={(e) => setProvider({ ...provider, mobileNumber: parseInt(e.target.value) })}
-                pattern="[0-9]*"
+                pattern="[1-9][0-9]*"
                 required
               />
-              {!provider.mobileNumber && <small className="text-danger">Este campo es obligatorio</small>}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -82,20 +93,18 @@ const ProviderAdd = () => {
                 onChange={(e) => setProvider({ ...provider, mail: e.target.value })}
                 required
               />
-              {!provider.mail && <small className="text-danger">Este campo es obligatorio</small>}
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Sitio web del proveedor</Form.Label>
               <Form.Control
-                type="url"
+                type="text"
                 size="lg"
                 value={provider.website}
                 onChange={(e) => setProvider({ ...provider, website: e.target.value })}
+                pattern="^(www\.)?[a-zA-Z0-9]+(\.[a-zA-Z]{2,})$"
                 required
               />
-              {!provider.website && <small className="text-danger">Este campo es
-              obligatorio</small>}
             </Form.Group>
 
             <div className="d-flex justify-content-end">

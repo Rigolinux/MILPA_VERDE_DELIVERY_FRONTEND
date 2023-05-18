@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getProviderById, updateProvider } from '../../../api/provider';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const ProviderDetails = () => {
   const navigate = useNavigate();
@@ -39,11 +40,17 @@ const ProviderDetails = () => {
     updateProvider(id ?? '', provider)
       .then((response) => {
         getProv();
-        console.log(response);
+        Swal.fire('Éxito', 'Proveedor actualizado correctamente', 'success');
         navigate('/providers');
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al actualizar el proveedor.',
+          confirmButtonText: 'Aceptar'
+        });
       });
   };
 
@@ -86,7 +93,7 @@ const ProviderDetails = () => {
             size="lg"
             value={provider.mobileNumber}
             onChange={(e) => setProvider({ ...provider, mobileNumber: parseInt(e.target.value) })}
-            pattern="[0-9]*"
+            pattern="[1-9][0-9]*"
             required
           />
         </Form.Group>
@@ -105,11 +112,12 @@ const ProviderDetails = () => {
         <Form.Group className="mb-3">
           <Form.Label>Sitio web del proveedor</Form.Label>
           <Form.Control
-            type="url"
-            size="lg"
-            value={provider.website}
-            onChange={(e) => setProvider({ ...provider, website: e.target.value })}
-            required
+                type="text"
+                size="lg"
+                value={provider.website}
+                onChange={(e) => setProvider({ ...provider, website: e.target.value })}
+                pattern="^(www\.)?[a-zA-Z0-9]+(\.[a-zA-Z]{2,})$"
+                required
           />
         </Form.Group>
 
