@@ -6,6 +6,7 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import { Button, Container } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UsersDetails = () => {
 
@@ -41,9 +42,16 @@ const UsersDetails = () => {
     updateUser(id ?? '', user).then((response) => {
       getUser();
       console.log(response);
+      Swal.fire('Éxito', 'Proveedor actualizado correctamente', 'success');
       navigate('/users');
     }).catch((error) => {
       console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: "Ha ocurrido un error al crear el usuario.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     });
   };
 

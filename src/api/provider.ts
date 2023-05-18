@@ -25,7 +25,7 @@ export const createProvider = async (data: Provider) => {
     }
     catch (error) {
         console.log(error);
-         error;
+        return error;
     }
 };
  export const getProviderById = async (id: string) => {
