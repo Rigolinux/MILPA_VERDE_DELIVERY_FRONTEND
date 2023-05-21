@@ -4,6 +4,9 @@ import { getAllRecipes } from '../../../api/Recipes'
 import ProductCard from '../components/ProductCard'
 import { Container } from '@mui/material'
 
+// Importando css
+import '../ProductsCustomerCSS.css'
+
 const ProductCustomerHome = () => {
   const [products, setProducts] = React.useState<Recipes[]>([
   ])
@@ -16,18 +19,18 @@ const ProductCustomerHome = () => {
 
     }, [])
 
-
   return (
     <Container className='mt-2'>
-        <div style={{display: 'flex', flexWrap: 'wrap'}}>
-          {products.map((product) => (
-        <div style={{width: '33.33%'}}>
-          <ProductCard {...product} />
-        </div>
-          ))}
-        </div>
+      <div className='product-container'>
+        {
+          products.map((product) => (
+            <div key={product._id} className='product-item'>
+              <ProductCard {...product} />
+            </div>
+          ))
+        }
+      </div>
     </Container>
-
   )
 }
 

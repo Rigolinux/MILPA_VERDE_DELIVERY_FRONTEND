@@ -1,0 +1,31 @@
+/* @media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+  }
+} */
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px; /* Ajusta el margen negativo para compensar el margen interno de los elementos */
+  justify-content: center;
+  align-items: center;
+}
+
+.product-item {
+  flex-basis: 33.33%;
+  margin: 10px; /* Establece un margen interno para cada elemento */
+  box-sizing: border-box; /* Asegura que el margen esté dentro del ancho total del elemento */
+}
+
+@media (max-width: 768px) {
+  .product-item {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-item {
+    flex-basis: 100%;
+  }
+}

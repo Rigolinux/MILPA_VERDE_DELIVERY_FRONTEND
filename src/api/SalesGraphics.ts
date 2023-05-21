@@ -84,3 +84,16 @@ export const getSalesHeaderByIdUser = async (id: string) => {
     return error;
   }
 };
+
+// Delete in cascade a sale
+export const deleteSale = async (id: string) => {
+  try {
+    const response = await api.delete(`/sales/deleteSale/${id}`);
+    return response.data;
+  }
+  catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+

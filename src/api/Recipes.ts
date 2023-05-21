@@ -1,5 +1,5 @@
 import api from "./axios";
-
+import { RecipeDetail } from "../interfaces/Recipes";
 
 export const getAllRecipes = async () => {
     try {
@@ -11,3 +11,35 @@ export const getAllRecipes = async () => {
         return error;
     }
 };
+
+export const getRecipeById = async (id: string) => {
+    try {
+        const response = await api.get(`/inventory/recipesh/${id}`);
+        return response.data;
+    }
+    catch (error) {
+        console.log(error);
+        return error;
+    }
+};
+
+export const createRecipeDetail2 = async (id: string) => {
+    try {
+        const response = await api.post(`/inventory/recipes/buy/${id}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+};
+
+export const createRecipeDetail = async (id: string, recipeDetail: RecipeDetail) => {
+    try {
+      const response = await api.post(`/inventory/recipes/buy/${id}`, recipeDetail);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+  

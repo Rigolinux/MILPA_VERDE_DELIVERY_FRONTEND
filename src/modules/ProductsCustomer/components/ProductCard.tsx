@@ -1,9 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Recipes } from '../../../interfaces/Recipes';
 import { CardMedia, CardContent, Typography, CardActions, Card, Button  } from '@mui/material';
 
-
 const ProductCard = (recipe:Recipes) => {
+
+  const navigate = useNavigate();
+
+  // creando la funcion para obtener los articulos por id
+  const articleDetail = (params:any) => {
+    navigate(`/articles/${params._id}`, {state: params});
+    // console.log(params);
+  };
+
+
   return (
     
         <Card sx={{ maxWidth: 345 }}>
@@ -22,8 +32,7 @@ const ProductCard = (recipe:Recipes) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Agregar</Button>
-            <Button size="small">Comprar</Button>
+            <Button size="small" onClick={() => articleDetail(recipe)}>Comprar</Button>
           </CardActions>
         </Card>
   )

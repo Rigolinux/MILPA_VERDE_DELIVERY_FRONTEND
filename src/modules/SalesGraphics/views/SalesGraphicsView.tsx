@@ -276,6 +276,7 @@ const SalesGraphicsView = () => {
     let year = date.format("YYYY");
     // Concatenandolos en una sola variable
     let dateSelected = month + "-" + year;
+    console.log(dateSelected, "Date Selectedasdasdasdasdasdasd");
 
     console.log(salesGraphicsList, "Before List");
     setSalesGraphicsList(salesGraphicsList2);

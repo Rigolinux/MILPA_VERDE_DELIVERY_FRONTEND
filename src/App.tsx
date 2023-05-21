@@ -15,12 +15,21 @@ import NavBar from './modules/NavBar/NavBar';
 import ProviderDetails from './modules/providers/Views/ProviderDetails';
 import ProviderAdd from './modules/providers/Views/ProviderAdd';
 
-import ProductView from './modules/Product/views/ProductView';
+import ProductView    from './modules/Product/views/ProductView';
 import ProductDetails from './modules/Product/views/ProductDetails';
-import ProductAdd from './modules/Product/views/ProductAdd';
+import ProductAdd     from './modules/Product/views/ProductAdd';
 
-// ACAAAAAAAAAAAAAAAAAAAAAA
-import SalesGraphicsView from './modules/SalesGraphics/views/SalesGraphicsView';
+// Imports de ventas
+import SalesGraphicsView  from './modules/SalesGraphics/views/SalesGraphicsView';
+import SalesView          from './modules/Sales/views/SalesView';
+
+// Imports de articulos
+import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
+import ProductCustomerHomeDetails from './modules/ProductsCustomer/views/ProductCustomerDetails';
+
+import ArticlesView from './modules/ProductsCustomer/views/ArticlesView';
+// import ArticlesDetails from './modules/ProductsCustomer/views/ArticlesDetails';
+
 
 import UsersView from './modules/Users/views/UsersView';
 import UsersDetails from './modules/Users/views/UsersDetails';
@@ -32,7 +41,6 @@ import ProductsOwnerview from './modules/productsOwner/views/productsOwnerview';
 
 import { useLocation } from 'react-router-dom';
 import Register from './modules/login/views/Register';
-import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
 import Footer from './modules/Footer/Footer';
 import PaymentView from './modules/paymentMethod/views/PaymentView';
 import { User } from './interfaces/User';
@@ -91,7 +99,7 @@ const verifyAuthentication = () => {
         
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/articles" element={<ProductCustomerHome />} />
+          {/* <Route path="/articles" element={<ProductCustomerHome />} /> */}
               <Route path="/about" element={<About/>} />
               <Route path="/banner" element={<Banner/>} />
         <Route element={<ProtectedRoute />} >
@@ -109,15 +117,23 @@ const verifyAuthentication = () => {
               <Route path="/products/:id" element={ verifyAuthentication() ?  <ProductDetails /> :  <Navigate to="/banner" replace /> } />
 
               {/* <Route path="/sales" element={<SalesGraphicsView />} /> */}
-              <Route path="/sales" element={ verifyAuthentication() ?  <SalesGraphicsView /> : <Navigate to="/banner" replace /> } />
+              <Route path="/salesgraphics" element={ verifyAuthentication() ?  <SalesGraphicsView /> : <Navigate to="/banner" replace /> } />
+
+              <Route path="/sales" element={ verifyAuthentication() ?  <SalesView /> : <Navigate to="/banner" replace /> } />
 
               <Route path="/users"      element={ verifyAuthentication() ?  <UsersView /> :    <Navigate to="/banner" replace /> } />
               <Route path="/users/add"  element={ verifyAuthentication() ?  <UsersAdd /> :     <Navigate to="/banner" replace /> } />
               <Route path="/users/:id"  element={ verifyAuthentication() ?  <UsersDetails /> : <Navigate to="/banner" replace /> } />
 
+              <Route path="/articles"     element={<ProductCustomerHome />} />
+              <Route path="/articles/:id" element={<ProductCustomerHomeDetails />} />
+              {/* <Route path="/articlesview" element={<ArticlesView />} /> */}
+
               <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
 
               <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/banner" replace /> } />
+
+
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
