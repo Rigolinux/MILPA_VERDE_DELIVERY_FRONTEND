@@ -36,6 +36,7 @@ import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustome
 import Footer from './modules/Footer/Footer';
 import PaymentView from './modules/paymentMethod/views/PaymentView';
 import { User } from './interfaces/User';
+import Print from './modules/printModule/views/Print';
 
 function App() {
   const location = useLocation();
@@ -118,6 +119,8 @@ const verifyAuthentication = () => {
               <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
 
               <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/banner" replace /> } />
+
+              
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />
