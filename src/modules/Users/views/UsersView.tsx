@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { GridColDef } from "@mui/x-data-grid";
 import { columns } from "../helpers/ColumnUsersConfig";
+import Swal from "sweetalert2";
 
 const UsersView = () => {
 
@@ -26,6 +27,12 @@ const UsersView = () => {
       console.log(response);
       const newList = usersList.filter((users) => users._id !== params.id);
       setUsersList(newList);
+      Swal.fire({
+        icon: 'success',
+        title: 'Proveedor eliminado',
+        text: 'El proveedor ha sido eliminado exitosamente.',
+        confirmButtonText: 'Aceptar',
+      });
     }).catch((error) => {
       console.log(error);
     });

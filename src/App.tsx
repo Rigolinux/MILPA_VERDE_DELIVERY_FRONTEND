@@ -44,6 +44,7 @@ import Register from './modules/login/views/Register';
 import Footer from './modules/Footer/Footer';
 import PaymentView from './modules/paymentMethod/views/PaymentView';
 import { User } from './interfaces/User';
+import Print from './modules/printModule/views/Print';
 
 function App() {
   const location = useLocation();
@@ -104,7 +105,7 @@ const verifyAuthentication = () => {
               <Route path="/banner" element={<Banner/>} />
         <Route element={<ProtectedRoute />} >
 
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={ <Navigate to="/banner" replace />} />
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
               <Route path="/managearticles" element={ <ProductsOwnerview />} />
@@ -133,7 +134,7 @@ const verifyAuthentication = () => {
 
               <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/banner" replace /> } />
 
-
+              
 
               {/* <Route path="/products" element={<ProductDetails />} />
               <Route path="/products/add" element={<ProductDetails />} />

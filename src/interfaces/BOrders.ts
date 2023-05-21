@@ -1,5 +1,5 @@
 import { Provider } from './provider';
-enum Status {
+export enum Status {
     PENDING = 'PENDING',
     APPROVED = 'APPROVED',
     REJECTED = 'REJECTED',
@@ -23,6 +23,7 @@ export interface BOrdersDetail {
 }
 
 export interface BOrders {
+    _id?: string;
     status: Status;
     provider : string;
     OrderDate : Date;

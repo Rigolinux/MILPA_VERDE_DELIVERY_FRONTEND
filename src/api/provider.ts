@@ -14,6 +14,12 @@ export const getAllProviders = async () => {
  };
 export const createProvider = async (data: Provider) => {
     try {
+        const providers = await getAllProviders();
+        const isDuplicateEmail = providers.some((provider: Provider) => provider.mail === data.mail);
+
+        if (isDuplicateEmail) {
+            throw new Error("El proveedor con este correo ya existe.");
+    }
         const response = await api.post("/products/provider", data);
         return response.data;
     }
@@ -35,26 +41,31 @@ export const createProvider = async (data: Provider) => {
 
  export const updateProvider = async (id: string, data: Provider) => {
     try {
-        console.log("este es el id");
-        console.log(id);
-        console.log("este es el data");
-        const data2 = {
-            ProviderName: data.ProviderName,
-            mail: data.mail,
-            mobileNumber: data.mobileNumber,
-            address: data.address,
-            website: data.website
-
-        }
-        console.log(data2);
-        const response = await api.patch(`/products/provider/${id}`, data2);
-        return response.data;
+      const providers = await getAllProviders();
+      const isDuplicateEmail = providers.some(
+        (provider: Provider) => provider.mail === data.mail && provider._id !== id
+      );
+  
+      if (isDuplicateEmail) {
+        throw new Error('El proveedor con este correo ya existe.');
+      }
+  
+      const updatedData = {
+        ProviderName: data.ProviderName,
+        mail: data.mail,
+        mobileNumber: data.mobileNumber,
+        address: data.address,
+        website: data.website,
+      };
+  
+      const response = await api.patch(`/products/provider/${id}`, updatedData);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error; 
     }
-    catch (error) {
-        console.log(error);
-        return error;
-    }
- };
+  };
+  
 
     export const deleteOneProvider = async (id: string) => {
         try {
