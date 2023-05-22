@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProductById, updateProduct } from "../../../api/product";
 //import { Button, TextField } from "@mui/material";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
+import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
@@ -38,12 +38,20 @@ const ProductDetails = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    updateProduct(id ?? '', product).then((response) => {
-      getProduct();
-      console.log(response);
-      navigate('/products');
+    updateProduct(id ?? '', product)
+      .then((response) => {
+        getProduct();
+        console.log(response);
+        Swal.fire('Éxito', 'Producto actualizado correctamente', 'success');
+        navigate('/products');
     }).catch((error) => {
       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al actualizar el producto.',
+        confirmButtonText: 'Aceptar'
+      });
     });
   };
 
@@ -65,6 +73,7 @@ const ProductDetails = () => {
             defaultValue={product?.name}
             value={product?.name}
             onChange={(e) => setProduct({...product, name: e.target.value})}
+            required
           />
         </Form.Group>
 
@@ -76,6 +85,7 @@ const ProductDetails = () => {
             defaultValue={product?.description}
             value={product?.description}
             onChange={(e) => setProduct({...product, description: e.target.value})}
+            required
           />
         </Form.Group>
 
@@ -86,6 +96,7 @@ const ProductDetails = () => {
             size="lg"
             onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
             value={product?.price}
+            required
             // defaultValue={product?.price}
           />
         </Form.Group>
@@ -97,13 +108,14 @@ const ProductDetails = () => {
             size="lg"
             defaultValue={product?.image}
             value={product?.image}
+            required
             onChange={(e) => setProduct({...product, image: e.target.value})}
           />
         </Form.Group>
 
-        {/* <Form.Group controlId="formFileMultiple" className="mb-3">
+        {/* <Form.Group controlId="formFileMultiple2" className="mb-3">
           <Form.Label>Imagen</Form.Label>
-          <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
+          <Form.Control type="file" multiple id="image" required value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
         </Form.Group> */}
 
         <Form.Group className="mb-3">
@@ -114,6 +126,7 @@ const ProductDetails = () => {
             defaultValue={product?.category}
             value={product?.category}
             onChange={(e) => setProduct({...product, category: e.target.value})}
+            required
           />
         </Form.Group>
         

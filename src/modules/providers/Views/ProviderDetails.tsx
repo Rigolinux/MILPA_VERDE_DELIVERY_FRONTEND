@@ -41,6 +41,17 @@ const ProviderDetails = () => {
       .then((response) => {
         getProv();
         Swal.fire('Éxito', 'Proveedor actualizado correctamente', 'success');
+
+        if(provider.ProviderName === '' || provider.address === '' || provider.mobileNumber === 0 || provider.mail === '' || provider.website === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Hay algunos campos vacíos',
+            text: '¡Por favor ingrese todos los campos!',
+          })
+          console.log('Error: Campos vacios');
+          return;
+        }
+
         navigate('/providers');
       })
       .catch((error) => {
@@ -117,7 +128,7 @@ const ProviderDetails = () => {
                 value={provider.website}
                 onChange={(e) => setProvider({ ...provider, website: e.target.value })}
                 pattern="^(www\.)?[a-zA-Z0-9]+(\.[a-zA-Z]{2,})$"
-                required
+                //required
           />
         </Form.Group>
 

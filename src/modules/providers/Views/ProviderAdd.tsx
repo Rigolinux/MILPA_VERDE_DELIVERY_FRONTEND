@@ -20,6 +20,17 @@ const ProviderAdd = () => {
     createProvider(provider)
       .then((response) => {
         console.log(response);
+
+        if(provider.ProviderName === '' || provider.address === '' || provider.mobileNumber === 0 || provider.mail === '' || provider.website === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Hay algunos campos vacíos',
+            text: '¡Por favor ingrese todos los campos!',
+          })
+          console.log('Error: Campos vacios');
+          return;
+        }
+        
         Swal.fire({
           icon: 'success',
           title: 'Proveedor agregado',

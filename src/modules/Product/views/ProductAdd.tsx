@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { Product } from "../../../interfaces/product";
 import { createProduct } from "../../../api/product";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const ProductAdd = () => {
   const navigate = useNavigate();
@@ -18,11 +19,37 @@ const ProductAdd = () => {
 
   const handlesubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createProduct(product).then((response) => {
+    createProduct(product)
+    .then((response) => {
       console.log(response);
+
+      if(product?.name === '' || product?.description === '' || product?.price === 0 || product?.image === '' || product?.category === '') {
+        Swal.fire({
+          icon: 'question',
+          title: 'Hay algunos campos vacíos',
+          text: '¡Por favor ingrese todos los campos!',
+        })
+        console.log('Error: Campos vacios');
+        return;
+      }
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Proveedor agregado',
+        text: 'El producto ha sido agregado exitosamente.',
+        confirmButtonText: 'Aceptar'
+      }).then(() => {
       navigate('/products');
-    }).catch((error) => {
+    }); 
+  })
+    .catch((error) => {
       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al agregar el producto.',
+        confirmButtonText: 'Aceptar'
+      });
     });
   };
 
@@ -44,6 +71,7 @@ const ProductAdd = () => {
                 value={product?.name}
                 defaultValue={product?.name}
                 onChange={(e) => setProduct({...product, name: e.target.value})}
+                required
               />
             </Form.Group>
 
@@ -55,6 +83,7 @@ const ProductAdd = () => {
                 value={product?.description}
                 defaultValue={product?.description}
                 onChange={(e) => setProduct({...product, description: e.target.value})}
+                required
               />
             </Form.Group>
 
@@ -64,8 +93,9 @@ const ProductAdd = () => {
                 type="number"
                 size="lg"
                 value={product?.price}
-                defaultValue={product?.price}
+                defaultValue={product?.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                 onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
+                required
               />
             </Form.Group>
           
@@ -80,7 +110,7 @@ const ProductAdd = () => {
 
             <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Imagen</Form.Label>
-              <Form.Control type="file" multiple id="image" value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
+              <Form.Control type="file" multiple id="image" required value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
             </Form.Group>
 
             {/* <Form.Group className="mb-3">
@@ -94,7 +124,7 @@ const ProductAdd = () => {
               />
             </Form.Group> */}
 
-            <Form.Group className="mb-3">
+            {/* <Form.Group className="mb-3">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
                 type="text"
@@ -102,8 +132,20 @@ const ProductAdd = () => {
                 value={product?.category}
                 defaultValue={product?.category}
                 onChange={(e) => setProduct({...product, category: e.target.value})}
+                required
               />
+            </Form.Group> */}
+
+            <Form.Group className="mb-3">
+            <Form.Label>Categoria</Form.Label>
+              <Form.Select aria-label="Categoria" size="lg" value={product?.category} defaultValue={product?.category} onChange={(e) => setProduct({...product, category: e.target.value})} required>
+                <option>Seleccione una categoria</option>
+                <option value="Food">Food</option>
+                <option value="Packaging">Packaging</option>
+              </Form.Select>
             </Form.Group>
+
+
 
               <div className="d-flex justify-content-end">
                 <Button className="btn btn-success" size="lg" type="submit">

@@ -42,7 +42,7 @@ const UsersDetails = () => {
     updateUser(id ?? '', user).then((response) => {
       getUser();
       console.log(response);
-      Swal.fire('Éxito', 'Proveedor actualizado correctamente', 'success');
+      Swal.fire('Éxito', 'Usuario actualizado correctamente', 'success');
       navigate('/users');
     }).catch((error) => {
       console.log(error);
