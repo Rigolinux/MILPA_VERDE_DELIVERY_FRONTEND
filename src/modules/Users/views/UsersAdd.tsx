@@ -1,6 +1,6 @@
 import { MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { Users } from "../../../interfaces/users";
 import { createUser } from "../../../api/users";
 import { useNavigate } from "react-router-dom";
@@ -128,19 +128,28 @@ const UsersAdd = () => {
           />
         </div>
 
-        <div className="d-flex flex-column mb-3">
+        {/* <div className="d-flex flex-column mb-3">
           <label htmlFor="username">Tipo de usuario:</label>
           <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={users?.role}
-    label="Age"
-    onChange={(e) => setUsers({ ...users, role: e.target.value })}
-  >
-    <MenuItem value={'user'}>Usuario</MenuItem>
-    <MenuItem value={'admin'}>Administrador</MenuItem>
-  </Select>
-        </div>
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={users?.role}
+              label="Age"
+              onChange={(e) => setUsers({ ...users, role: e.target.value })}
+            >
+              <MenuItem value={'user'}>Usuario</MenuItem>
+              <MenuItem value={'admin'}>Administrador</MenuItem>
+          </Select>
+        </div> */}
+
+        <Form.Group className="mb-3">
+            <Form.Label>Categoria</Form.Label>
+              <Form.Select aria-label="Categoria" size="lg" required value={users?.role} defaultValue={users?.role} onChange={(e) => setUsers({ ...users, role: e.target.value })}>
+                <option>Seleccione una categoria</option>
+                <option value="user">Usuario</option>
+                <option value="admin">Administrador</option>
+              </Form.Select>
+        </Form.Group>
 
         <div className="d-flex justify-content-end">
           <Button variant="success" type="submit">
