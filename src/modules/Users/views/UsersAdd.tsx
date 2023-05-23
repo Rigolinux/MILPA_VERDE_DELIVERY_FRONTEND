@@ -143,9 +143,8 @@ const UsersAdd = () => {
         </div> */}
 
         <Form.Group className="mb-3">
-            <Form.Label>Categoria</Form.Label>
+            <Form.Label>Tipo de usuario:</Form.Label>
               <Form.Select aria-label="Categoria" size="lg" required value={users?.role} defaultValue={users?.role} onChange={(e) => setUsers({ ...users, role: e.target.value })}>
-                <option>Seleccione una categoria</option>
                 <option value="user">Usuario</option>
                 <option value="admin">Administrador</option>
               </Form.Select>
