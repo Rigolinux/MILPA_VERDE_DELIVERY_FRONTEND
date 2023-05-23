@@ -42,6 +42,17 @@ const ProductDetails = () => {
       .then((response) => {
         getProduct();
         console.log(response);
+
+        if(product?.name === '' || product?.description === '' || product?.price === 0 || product?.image === '' || product?.category === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Hay algunos campos vacíos',
+            text: '¡Por favor ingrese todos los campos!',
+          })
+          console.log('Error: Campos vacios');
+          return;
+        }
+        
         Swal.fire('Éxito', 'Producto actualizado correctamente', 'success');
         navigate('/products');
     }).catch((error) => {
@@ -118,7 +129,7 @@ const ProductDetails = () => {
           <Form.Control type="file" multiple id="image" required value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
         </Form.Group> */}
 
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Label>Categoria</Form.Label>
           <Form.Control
             type="text"
@@ -128,7 +139,16 @@ const ProductDetails = () => {
             onChange={(e) => setProduct({...product, category: e.target.value})}
             required
           />
-        </Form.Group>
+        </Form.Group> */}
+
+            <Form.Group className="mb-3">
+            <Form.Label>Categoria</Form.Label>
+              <Form.Select aria-label="Categoria" size="lg" value={product?.category} defaultValue={product?.category} onChange={(e) => setProduct({...product, category: e.target.value})} required>
+                <option>Seleccione una categoria</option>
+                <option value="Food">Food</option>
+                <option value="Packaging">Packaging</option>
+              </Form.Select>
+            </Form.Group>
         
           <div className="d-flex justify-content-end">
             <Button variant="success" color="primary" size="lg" type="submit">

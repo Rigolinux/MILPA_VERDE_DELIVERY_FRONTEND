@@ -42,13 +42,24 @@ const UsersDetails = () => {
     updateUser(id ?? '', user).then((response) => {
       getUser();
       console.log(response);
+
+      if(user?.name === '' || user?.lastname === '' || user?.email === '' || user?.password === '' || user?.username === '' || user?.role === '') {
+        Swal.fire({
+          icon: 'question',
+          title: 'Hay algunos campos vacíos',
+          text: '¡Por favor ingrese todos los campos!',
+        })
+        console.log('Error: Campos vacios');
+        return;
+      }
+
       Swal.fire('Éxito', 'Usuario actualizado correctamente', 'success');
       navigate('/users');
     }).catch((error) => {
       console.log(error);
       Swal.fire({
         title: "Error",
-        text: "Ha ocurrido un error al crear el usuario.",
+        text: "Ha ocurrido un error al actualizar el usuario.",
         icon: "error",
         confirmButtonText: "OK",
       });
@@ -121,16 +132,16 @@ const UsersDetails = () => {
     <div className="d-flex flex-column mb-3">
           <label htmlFor="username">Tipo de usuario:</label>
           <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={user?.role}
-    label="Age"
-    onChange={(e) => setUser({ ...user, role: e.target.value })}
-  >
-    <MenuItem value={'user'}>Usuario</MenuItem>
-    <MenuItem value={'admin'}>Administrador</MenuItem>
-  </Select>
-        </div>
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={user?.role}
+              label="Age"
+              onChange={(e) => setUser({ ...user, role: e.target.value })}
+            >
+              <MenuItem value={'user'}>Usuario</MenuItem>
+              <MenuItem value={'admin'}>Administrador</MenuItem>
+          </Select>
+    </div>
 
     <div className="d-flex justify-content-end">
       <Button variant="success" size="lg" type="submit">

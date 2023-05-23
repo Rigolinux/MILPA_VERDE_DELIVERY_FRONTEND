@@ -22,6 +22,17 @@ const UsersAdd = () => {
     event.preventDefault();
     createUser(users).then((response) => {
         console.log(response);
+
+        if(users?.name === '' || users?.lastname === '' || users?.email === '' || users?.password === '' || users?.username === '' || users?.role === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Hay algunos campos vacíos',
+            text: '¡Por favor ingrese todos los campos!',
+          })
+          console.log('Error: Campos vacios');
+          return;
+        }
+
         Swal.fire({
           title: "Usuario creado",
           text: "El usuario ha sido creado exitosamente.",
