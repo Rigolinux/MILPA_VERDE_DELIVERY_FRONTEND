@@ -25,7 +25,9 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
     price: 0,
     Image: '',
   });
-
+  
+  const [pedidotest, setPedidotest] = React.useState(0);
+  const [isLoading , setIsLoading] = React.useState(true);
   const [articlesDetail, setArticlesDetail] = React.useState<RecipeDetail>({
     // _id: '',
     ID_Product: '',
@@ -39,9 +41,24 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
   const getArticle = () => {
     getRecipeById(id ?? '').then((response) => {
       setArticles(response);
+      console.log(response);
+      const cart = localStorage.getItem('CartAticles');
+      const ArticlesCart:RecipeDetail[] = cart ? JSON.parse(cart) : [];
+
+      if(ArticlesCart.length > 0){
+          ArticlesCart.forEach((item) => {
+            if(item.ID_Product == response._id){
+              console.log('Cantidad:', item.quantity);
+              setPedidotest(item.quantity);
+            }
+          });
+
+       setIsLoading(false);
+      }
       // console.log(response);
     }).catch((error) => {
       console.log(error);
+      setIsLoading(false);
     });
   };
 
@@ -65,7 +82,6 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
   // });
 
   // Agregar el estado para pedidotest
-  const [pedidotest, setPedidotest] = React.useState(0);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,25 +94,51 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
     // console.log('ID del usuario:', idUser);
 
     const articlesDetail : RecipeDetail = {
-      ID_Product: idUser,
+      
+      //ID_Product: idUser,
+      ID_Product: articles._id,
       quantity:   pedidotest,
       price:      articles.price,
       total:      pedidotest * articles.price,
     }
     
     setArticlesDetail(articlesDetail);
-    console.log('Dato seteado:', articlesDetail);
+   // console.log('Dato seteado:', articlesDetail);
 
     // Validando que el stock sea mayor o igual a la cantidad solicitada
     if (pedidotest > 0) {
       if (articles.Stock >= pedidotest) {
         // alert('Pedido realizado con exito');
-        createRecipeDetail(articles._id, articlesDetail).then((response) => {
+        const cart = localStorage.getItem('CartAticles');
+        const ArticlesCart:RecipeDetail[] = cart ? JSON.parse(cart) : [];
+
+        if(ArticlesCart.length > 0){
+          let find = false;
+            ArticlesCart.forEach((item) => {
+              if(item.ID_Product === articlesDetail.ID_Product){
+                find = true;
+                item.quantity = articlesDetail.quantity;
+                item.total = item.quantity * item.price;
+              }
+            });
+            if(!find){
+              ArticlesCart.push(articlesDetail);
+            }
+        }
+        else{
+          ArticlesCart.push(articlesDetail);
+        }
+
+        localStorage.setItem('CartAticles', JSON.stringify(ArticlesCart));
+
+
+
+        /* createRecipeDetail(articles._id, articlesDetail).then((response) => {
           console.log(response);
           // window.location.reload();
         }).catch((error) => {
           console.log(error);
-        });
+        }); */
 
         Swal.fire({
           icon: 'success',
@@ -127,6 +169,7 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
 
   React.useEffect(() => {
     // console.log(recipe);
+   
   }, []);
 
 
@@ -177,7 +220,9 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
           <Row>
             <Col>
               {/* Contenido de la columna 2, fila 4 */}
+             
               <Form.Group>
+                { !isLoading ? 
                 <Form.Control
                   type="number"
                   size='sm'
@@ -193,7 +238,7 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
                   }}
                   // onChange={(e) => setArticles({...articles, Stock: Number(e.target.value)})}
                   onChange={(e) => setPedidotest(Number(e.target.value))} // Actualizar el estado pedidotest 
-                />
+                /> : 'Cargando...'}
               </Form.Group>
             </Col>
           </Row>
