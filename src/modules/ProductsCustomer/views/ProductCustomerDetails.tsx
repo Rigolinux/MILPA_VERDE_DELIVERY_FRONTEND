@@ -55,6 +55,9 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
 
        setIsLoading(false);
       }
+      else{
+        setIsLoading(false);
+      }
       // console.log(response);
     }).catch((error) => {
       console.log(error);

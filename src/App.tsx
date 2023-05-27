@@ -49,11 +49,25 @@ import Print from './modules/printModule/views/Print';
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  /* 
   
+  var x= {
+    name: 'jose',
+    role: 'admin'
+  }
+  localStorage.setItem('jose',JSON.stringify(x));
+
+  const nombre = localStorage.getItem('jose');
+
+  const user:User = nombre ? JSON.parse(nombre) : {name:'',role:''};
+  
+  console.log(user); 
+  */
   const [login, setlogin] = useState(false)
   useEffect(() => {
     // add path register when is ready
-    console.log(import.meta.env.VITE_TEST)
+   
     if(location.pathname === '/login' || location.pathname === '/register'){
       setlogin(true)
     }else{
