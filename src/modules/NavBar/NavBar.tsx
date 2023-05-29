@@ -17,6 +17,7 @@ const MyNavbar: React.FC = () => {
           <Nav.Link href="/About">Acerca</Nav.Link>
           <Nav.Link href="/salesgraphics">Ventas</Nav.Link>
           <Nav.Link href="/articles">Articulos</Nav.Link>
+          <Nav.Link href="/cart">Carrito</Nav.Link>
           {/* <NavDropdown title="Productos" id="basic-nav-dropdown">
             <NavDropdown.Item href="/products">Productos</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">

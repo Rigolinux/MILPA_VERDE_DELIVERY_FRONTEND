@@ -12,10 +12,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../../api/auth';
 
+// Importando sweet alert
+import Swal from 'sweetalert2';
+
 const theme = createTheme();
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   // Creando el metodo para crear un usuario
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,45 +30,109 @@ export default function SignUp() {
       lastname: data.get('lastname')?.toString() || '',
       email: data.get('email')?.toString() || '',
       password: data.get('password')?.toString() || '',
-      address: data.get('address')?.toString() || '',
+      //address: data.get('address')?.toString() || '',
     };
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) {
-      alert('Por favor, ingrese un correo electrónico válido');
-      return;
-    }
-
-    if (!user.username || !user.name || !user.lastname || !user.email || !user.password || !user.address) {
-      alert('Por favor completa todos los campos');
-      return;
-    }
-  
+    // Insertando sweet alert
     register(user).then((res) => {
-      console.log(res);
-      alert('Usuario creado correctamente');
-      navigate('/login');
-    });
-
-    // const error = validatePassword(user.password, user.confirmPassword);
-
-    // if (error) {
-    //   alert(error);
-    // } else {
-    //   register(user).then((res) => {
-    //     console.log(res);
-    //     alert('Usuario creado correctamente');
-    //   });
-    // }
+        // Validando con sweet alert si el usuario y la contraseña están vacíos
+        if (user.username === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Usuario Vacío',
+            text: '¡Por favor ingrese el usuario!',
+          });
+          console.log('Error: Usuario vacío');
+          return;
+        } else if (user.password === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Contraseña Vacía',
+            text: '¡Por favor ingrese la contraseña!',
+          });
+          console.log('Error: Contraseña vacía');
+          return;
+        } else if (user.name === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Nombre Vacío',
+            text: '¡Por favor ingrese el nombre!',
+          });
+          console.log('Error: Nombre vacío');
+          return;
+        } else if (user.lastname === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Apellido Vacío',
+            text: '¡Por favor ingrese el apellido!',
+          });
+          console.log('Error: Apellido vacío');
+          return;
+        } else if (user.email === '') {
+          Swal.fire({
+            icon: 'question',
+            title: 'Correo Vacío',
+            text: '¡Por favor ingrese el correo!',
+          });
+          console.log('Error: Correo vacío');
+          return;
+        // } else if (user.address === '') {
+        //   Swal.fire({
+        //     icon: 'question',
+        //     title: 'Dirección Vacía',
+        //     text: '¡Por favor ingrese la dirección!',
+        //   });
+        //   console.log('Error: Dirección vacía');
+        //   return;
+        }
+        //validando un correo valido
+        else if (!user.email.includes('@')) {
+          Swal.fire({
+            icon: 'question',
+            title: 'Correo Invalido',
+            text: '¡Por favor ingrese un correo valido!',
+          });
+          console.log('Error: Correo invalido');
+          return;
+        }
+         
+        // Validando con sweet alert si el usuario tiene menos de 4 caracteres
+        else if (user.username.length <= 4) {
+          Swal.fire({
+            icon: 'question',
+            title: 'Usuario Muy Corto',
+            text: '¡Por favor ingrese un usuario con más de 5 caracteres!',
+          });
+          console.log('Error: Usuario muy corto');
+          return;
+        }
+        // Validando con sweet alert si la contraseña tiene menos de 5 caracteres
+        else if (user.password.length < 5) {
+          Swal.fire({
+            icon: 'question',
+            title: 'Contraseña Muy Corta',
+            text: '¡Por favor ingrese una contraseña con más de 5 caracteres!',
+          });
+          console.log('Error: Contraseña muy corta');
+          return;
+        }
+        // Validando si todos los datos se ingresaron correctamente
+        else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario Creado Correctamente',
+            text: '¡Por favor inicie sesión!',
+          });
+          console.log(res);
+          console.log('Usuario creado correctamente');
+          // navigate('/login');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-
-  // function validatePassword(password: string, confirmPassword: string): string | null {
-  //   if (password !== confirmPassword) {
-  //     return "Las contraseñas no coinciden";
-  //   }
-  //   return null;
-  // }
-  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -125,7 +193,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   inputProps={{
-                    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+                    pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$',
                   }}
                 />
               </Grid>
@@ -144,23 +212,12 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="confirmPassword"
-                  label="Confirmar Contraseña"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="new-password"
-                />
-              </Grid> */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
                   id="address"
                   label="Dirección"
                   name="address"
                   autoComplete="address"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"

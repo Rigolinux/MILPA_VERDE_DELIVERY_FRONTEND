@@ -8,6 +8,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import '../css/ProductCustomerDetails.css';
 
+import { CartHome } from '../../Cart/views/CartView';
+
 // Importando sweetalert2
 import Swal from 'sweetalert2';
 
@@ -88,13 +90,13 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log('ID:', localStorage.getItem('user'));
+    console.log('ID:', localStorage.getItem('user'));
     // console.log('ID:', userA._id);
 
     // ACA DEBERIA IR EL ID DEL USUARIO QUE ESTA LOGUEADO ACTUALMENTE
     // const idUser = '999';
     const idUser = userA._id;
-    // console.log('ID del usuario:', idUser);
+    console.log('ID del usuario:', idUser);
 
     const articlesDetail : RecipeDetail = {
       
@@ -122,6 +124,8 @@ const ProductCustomerHomeDetails = (recipe:Recipes) => {
                 find = true;
                 item.quantity = articlesDetail.quantity;
                 item.total = item.quantity * item.price;
+                // console.log('ZZZ');
+                // navigate('/cart');
               }
             });
             if(!find){

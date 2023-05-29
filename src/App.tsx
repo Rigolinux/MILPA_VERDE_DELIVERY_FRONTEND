@@ -27,6 +27,10 @@ import SalesView          from './modules/Sales/views/SalesView';
 import ProductCustomerHome from './modules/ProductsCustomer/views/ProductCustomerHome';
 import ProductCustomerHomeDetails from './modules/ProductsCustomer/views/ProductCustomerDetails';
 
+// Imports de cart
+import CartView from './modules/Cart/views/CartView';
+import Test from './modules/Cart/views/Test';
+
 import ArticlesView from './modules/ProductsCustomer/views/ArticlesView';
 // import ArticlesDetails from './modules/ProductsCustomer/views/ArticlesDetails';
 
@@ -143,6 +147,9 @@ const verifyAuthentication = () => {
               <Route path="/articles"     element={<ProductCustomerHome />} />
               <Route path="/articles/:id" element={<ProductCustomerHomeDetails />} />
               {/* <Route path="/articlesview" element={<ArticlesView />} /> */}
+
+              <Route path="/cart" element={<CartView />} />
+              <Route path="/test" element={<Test />} />
 
               <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
 
