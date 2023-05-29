@@ -11,7 +11,7 @@ export interface Recipes {
     name : string;
     description : string;
     Stock: number;
-    status: status;
+    status?: status;
     cost: number;
     price: number;
     Image: string; 

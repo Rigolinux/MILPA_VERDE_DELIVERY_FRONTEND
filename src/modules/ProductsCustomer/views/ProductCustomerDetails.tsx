@@ -13,20 +13,30 @@ import { CartHome } from '../../Cart/views/CartView';
 // Importando sweetalert2
 import Swal from 'sweetalert2';
 
-const ProductCustomerHomeDetails = (recipe:Recipes) => {
+enum status {
+  InUse = "InUse",
+  Inactive = "Inactive",
+  use= "En uso",
+  inactive= "Inactivo"
+}
+
+const ProductCustomerHomeDetails = () => {
   const location = useLocation();
   const params = location.state;
   const navigate = useNavigate();
   
-  const [articles, setArticles] = React.useState<Recipes>({
-    name: '',
-    description: '',
+  const [articles, setArticles] = React.useState<Recipes>(
+    {
+      _id : '',
+    name : '',
+    description : '',
     Stock: 0,
-    status: '',
     cost: 0,
     price: 0,
-    Image: '',
-  });
+    status: status.Inactive,
+    Image: '', 
+    }
+  );
   
   const [pedidotest, setPedidotest] = React.useState(0);
   const [isLoading , setIsLoading] = React.useState(true);

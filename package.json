@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve dist"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -29,6 +30,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-to-print": "^2.14.12",
+    "serve": "^14.2.0",
     "sweetalert2": "^11.7.5"
   },
   "devDependencies": {

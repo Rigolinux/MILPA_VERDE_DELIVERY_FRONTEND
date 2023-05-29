@@ -145,7 +145,7 @@ const verifyAuthentication = () => {
               <Route path="/users/:id"  element={ verifyAuthentication() ?  <UsersDetails /> : <Navigate to="/banner" replace /> } />
 
               <Route path="/articles"     element={<ProductCustomerHome />} />
-              <Route path="/articles/:id" element={<ProductCustomerHomeDetails />} />
+              <Route path="/articles/:id" element={<ProductCustomerHomeDetails  />} />
               {/* <Route path="/articlesview" element={<ArticlesView />} /> */}
 
               <Route path="/cart" element={<CartView />} />
