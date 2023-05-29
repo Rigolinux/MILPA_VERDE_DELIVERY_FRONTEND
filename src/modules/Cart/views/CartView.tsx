@@ -2,7 +2,7 @@ import React from 'react';
 import { Recipes, RecipeDetail } from '../../../interfaces/Recipes';
 import { useParams } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Test } from '../views/Test';
+import Test  from '../views/Test';
 
 // Importando a pay
 import { sendtoBillPaypal } from '../../../api/pay';

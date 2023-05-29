@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import '../css/ProductCustomerDetails.css';
 
-import { CartHome } from '../../Cart/views/CartView';
+import CartHome from '../../Cart/views/CartView';
 
 // Importando sweetalert2
 import Swal from 'sweetalert2';
