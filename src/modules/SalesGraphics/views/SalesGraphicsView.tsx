@@ -70,9 +70,9 @@ const SalesGraphicsView = () => {
   }
 
   // Tomando el valor de ID_recipe de la tabla salesdetails
-  const [labelsSGLC_ID_recipe, setlabelsSGLC_ID_recipe] = React.useState();
-  const [dataSGLC_Quantity, setdataSGLC_Quantity] = React.useState();
-  const [dataSGBC_Total, setdataSGBC_Total] = React.useState();
+  const [labelsSGLC_ID_recipe, setlabelsSGLC_ID_recipe] = React.useState<string[]>([]);
+  const [dataSGLC_Quantity, setdataSGLC_Quantity] = React.useState<string[]>([]);
+  const [dataSGBC_Total, setdataSGBC_Total] = React.useState<string[]>([]);
 
   // ============================== Grafico de lineas ==============================
   const optionsSGLC = {

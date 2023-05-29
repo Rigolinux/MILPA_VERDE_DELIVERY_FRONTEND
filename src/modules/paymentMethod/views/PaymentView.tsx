@@ -34,7 +34,7 @@ const DepositForm = ({ onSubmit }: any) => {
   const getUser = ():string => {
     const storedUser = localStorage.getItem('user');
     let user:User = storedUser ? JSON.parse(storedUser).user : {_id: ""};
-    return user._id
+    return user._id ?? "";
   };
   useEffect(() => {
     // obtener los datos de compra
