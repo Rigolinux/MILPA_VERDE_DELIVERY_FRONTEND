@@ -6,8 +6,6 @@ import { CgShoppingCart } from "react-icons/cg";
 import { IconContext } from 'react-icons';
 
 import { Users } from "../../interfaces/users";
-import { useParams } from "react-router-dom";
-import { getUserById, updateUser } from "../../api/users";
 import { useEffect } from 'react';
 
 
@@ -24,19 +22,6 @@ const MyNavbar: React.FC = () => {
     _id: '',
   });
 
-  // const { id } = useParams();
-
-  // const getUser = () => {
-  //   getUserById(id ?? '').then((response) => {
-  //     setUser(response);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // };
-
-  // React.useEffect(() => {
-  //   getUser();
-  // }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -50,10 +35,7 @@ const MyNavbar: React.FC = () => {
     const user = storedUser ? JSON.parse(storedUser).user : "";
     setUser(user);
   }, [isLoggedIn]);
-  // const storedUser = localStorage.getItem('user');
-  // const user2 = storedUser ? JSON.parse(storedUser).user : "";
-  
-  // console.log(user2); 
+
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -73,7 +55,6 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div className='al'>
-          {/* <span className="text-white">{storedUser}</span> */}
          {user.name != ''&& user ? <Navbar.Brand>{user.username}</Navbar.Brand>  : '' }
           {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
