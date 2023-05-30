@@ -1,0 +1,70 @@
+import {
+  GridColDef,
+} from '@mui/x-data-grid'
+
+export const columns: GridColDef[] = [
+  // {
+  //   field: 'ID_USER',
+  //   headerName: 'ID de usuario',
+  //   width: 200,
+  //   headerAlign: 'center',
+  //   align: 'center',
+  //   editable: false,
+  // },
+  {
+    field: 'dateOfbuy',
+    headerName: 'Fecha de compra',
+    width: 200,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+  {
+    field: 'quantity',
+    headerName: 'Cantidad',
+    width: 100,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+  {
+    field: 'total',
+    headerName: 'Total',
+    width: 100,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+  {
+    field: 'status',
+    headerName: 'Estado',
+    width: 100,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+  // {
+  //   field: 'dateOfDelivered',
+  //   headerName: 'Fecha de entrega',
+  //   width: 200,
+  //   headerAlign: 'center',
+  //   align: 'center',
+  //   editable: false,
+  // },
+  {
+    field: 'TransferNumber',
+    headerName: 'Numero de transferencia',
+    width: 200,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+  {
+    field: 'TransferStatus',
+    headerName: 'Estado de transferencia',
+    width: 175,
+    headerAlign: 'center',
+    align: 'center',
+    editable: false,
+  },
+]

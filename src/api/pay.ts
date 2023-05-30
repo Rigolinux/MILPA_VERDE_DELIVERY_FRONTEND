@@ -30,6 +30,7 @@ export const captureOrder = async (orderId : string) => {
 };
 
 export const createaSale = async (data: SaleData) => {
+  console.log("data que llego al pay.ts: ", data);
   try {
     const response = await api.post("/sales/saleCreate", data);
     console.log("Loque se guardo en la db ", response.data);
