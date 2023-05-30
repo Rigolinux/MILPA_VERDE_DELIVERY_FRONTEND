@@ -110,6 +110,7 @@ const verifyAuthentication = () => {
 const verifyRole = () => {
   const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser).user : '';
+  alert( user.role === 'admin');
   return user.role === 'admin';
 };
 
@@ -173,7 +174,7 @@ const verifyRole = () => {
               
 
               
-              <Route path="/history" element={verifyAuthentication() ? (verifyRole() ? <HistoryViewAdm /> : <HistoryView />) : <Navigate to="/" replace /> } />
+              <Route path="/history" element={verifyAuthentication() ? <HistoryViewAdm /> : <HistoryView />} />
 
 
 

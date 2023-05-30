@@ -57,14 +57,11 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link>}
           { !verifyRole() ?  <Nav.Link onClick={() => navigate("/about")}>Acerca</Nav.Link> : null}
           {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/salesgraphics")}>Ventas</Nav.Link>}
-<<<<<<< HEAD
-          {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
+          
           {isLoggedIn && <Nav.Link onClick={() => navigate("/history")}>Historial</Nav.Link>}
-=======
           {!verifyRole() ? isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>
           : isLoggedIn && <Nav.Link onClick={() => navigate("/managearticles")}>Gestionar Articulos</Nav.Link>
           }
->>>>>>> 0422ea409a899f9e35868244a6a7dba932bfcdc7
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div className='sticky-xl-top mr-auto' >
