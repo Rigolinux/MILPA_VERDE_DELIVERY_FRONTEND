@@ -8,6 +8,14 @@
   @include md {
     height: calc(100vh - 80px);
   }
+  
+  @include xl {
+    height: calc(100vh - 80px);
+  }
+
+  @include xxl {
+    height: calc(100vh - 80px);
+  }
 
   .content {
     height: 100%;
@@ -132,7 +140,7 @@
       align-items: center;
 
       .banner-img {
-        width: 500px;
+        width: 450px;
         height: auto;
         margin-right: 60px;
         margin-top: 0;
