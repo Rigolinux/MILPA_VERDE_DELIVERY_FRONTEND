@@ -153,7 +153,6 @@ const ProductDetails = () => {
           <Form.Control type="file" multiple id="image" required value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
         </Form.Group> */}
 
-<<<<<<< HEAD
         <Form.Group className="mb-3">
               <Form.Label>Image</Form.Label>
               <Form.Control
@@ -162,13 +161,13 @@ const ProductDetails = () => {
                 onChange={handleUpload}
               />
             </Form.Group>
-=======
+
         <Form.Group controlId="formFileMultiple2" className="fileinput">
           {/* <Form.Label>Imagen</Form.Label> */}
           <Form.Control type="file"   onChange={(e) => handleUpload(e)} />
           {/* <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} /> */}
         </Form.Group>
->>>>>>> 35210c6203cd6126dfaa2d7de0b464e9eca1cbb2
+
 
         {/* <Form.Group className="mb-3">
           <Form.Label>Categoria</Form.Label>
