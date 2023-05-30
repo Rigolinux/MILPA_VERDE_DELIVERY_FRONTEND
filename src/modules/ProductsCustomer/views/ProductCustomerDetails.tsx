@@ -208,7 +208,7 @@ const ProductCustomerHomeDetails = () => {
               alt="Content"
               height="100%"
               width="100%"
-              image={`../../../../${articles.Image}`}
+              image={`${articles.Image}`}
               />
 
             </Col>

@@ -1,12 +1,15 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { RecipeDetail, Recipes } from '../../../interfaces/Recipes';
 import { uploadImage } from '../../../common/Config_clodinary';
 import Swal from 'sweetalert2';
-import { CreateRecipe } from '../../../api/Recipes';
-const ArticlesAdd = () => {
+import { CreateRecipe, getRecipeById, updateRecipe } from '../../../api/Recipes';
+
+
+
+const ArticlesEdit = () => {
 
 
     enum status {
@@ -17,13 +20,29 @@ const ArticlesAdd = () => {
     }
   const navigate = useNavigate();
   const [image, setImage] = React.useState('');
+  const [loading, setLoading] = React.useState(true);
 
   const handleUpload = async (e: any) => {
       e.preventDefault()
       const file = e.target.files[0]
+      //loading while uploading with sweet alert
+      Swal.fire({
+
+        title: 'Subiendo imagen',
+        text: 'Por favor espere...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading()
+        },
+      });
+
+
+
         let url = null;
         url = await uploadImage(file)
-       
+      //stop loading
+      Swal.close();
       if(url)
       setImage(url);
       setProduct({...product, Image: url});
@@ -41,7 +60,24 @@ const ArticlesAdd = () => {
         Image: '', 
     }
   );
+  const { id } = useParams();
 
+  React.useEffect(() => {
+
+    if (id) {
+      getRecipeById(id)
+
+        .then((response) => {
+          setProduct(response);
+          setLoading(false);
+          console.log(response);
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log(error);
+        });
+    }
+  }, []);
   const [ details, setDetails ] = React.useState<RecipeDetail[]>([
     {
         "ID_Product": "9999",
@@ -58,10 +94,17 @@ const ArticlesAdd = () => {
   ])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      console.log(product);
+      
     event.preventDefault();
+      //remove _id from product
+      let id = product._id || '';
+      delete product._id;
+      delete product.__v || '';
 
-    CreateRecipe({...product, details})
+      console.log('product', product);
+      console.log('id', id);
+
+    updateRecipe(product, id)
       .then((response) => {
         
 
@@ -77,6 +120,7 @@ const ArticlesAdd = () => {
         
         Swal.fire('Éxito', 'Producto agregado correctamente', 'success');
         navigate('/products');
+      
     }).catch((error) => {
       console.log(error);
       Swal.fire({
@@ -88,10 +132,12 @@ const ArticlesAdd = () => {
     });
   };
   return (
+    <>{
+      !loading ? 
     <Container className="py-5">
     <Row className="mb-4">
       <Col>
-        <h2 className="text-center">Detalles del producto</h2>
+        <h2 className="text-center">Editar Producto</h2>
       </Col>
     </Row>
     <Row>
@@ -103,7 +149,7 @@ const ArticlesAdd = () => {
               type="text"
               size="lg"
               min={0}
-              defaultValue={product?.name}
+             
               value={product?.name}
               onChange={(e) => setProduct({...product, name: e.target.value})}
               required
@@ -116,7 +162,6 @@ const ArticlesAdd = () => {
               type="text"
               size="lg"
               min={0}
-              defaultValue={product?.description}
               value={product?.description}
               onChange={(e) => setProduct({...product, description: e.target.value})}
               required
@@ -126,7 +171,7 @@ const ArticlesAdd = () => {
           <Form.Group className="mb-3">
             <Form.Label>Precio $</Form.Label>
             <Form.Control
-              type="number"
+              type="float"
               size="lg"
               min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
@@ -138,7 +183,7 @@ const ArticlesAdd = () => {
           <Form.Group className="mb-3">
             <Form.Label>Costo $</Form.Label>
             <Form.Control
-              type="number"
+              type="float"
               size="lg"
               min={0}
               onChange={(e) => setProduct({...product,cost: Number(e.target.value)})}
@@ -196,8 +241,10 @@ const ArticlesAdd = () => {
           </Form>
       </Col>
     </Row>
-  </Container>
+  </Container>:
+  <h2>Cargando</h2>  
+}</>
   )
 }
 
-export default ArticlesAdd
+export default ArticlesEdit

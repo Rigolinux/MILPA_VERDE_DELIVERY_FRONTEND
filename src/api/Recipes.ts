@@ -47,6 +47,16 @@ export const getRecipeById = async (id: string) => {
     }
 };
 
+export const updateRecipe = async (data: any,id:string) => {
+    try {
+        const response = await api.patch(`/inventory/updateRecipes/${id}`, data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
+
 export const createRecipeDetail2 = async (id: string) => {
     try {
         const response = await api.post(`/inventory/recipes/buy/${id}`);

@@ -26,28 +26,7 @@ const ProductsOwnerview = () => {
 
     const getRecipes = () => {
         getAllRecipes().then((response:Recipes[]) => {
-            response.map((recipe:Recipes) => {
-                if(recipe.Image.endsWith("bu_pollo.jpg")){
-                    recipe.Image =  'Burrito de pollo'
-                }
-                if(recipe.Image.endsWith("bu_carne.jpg")){
-                    recipe.Image =  'Burrito de carne'
-                }
-                if(recipe.Image.endsWith("que_pollo.jpg")){
-                    recipe.Image =  'Quesadilla de pollo'
-                }
-                if(recipe.Image.endsWith("que_carne.jpg")){
-                    recipe.Image =  'Quesadilla de carne'
-                }
-
-                if(recipe.status == 'InUse'){
-                    recipe.status = status.use
-                }
-                else{
-                    recipe.status = status.inactive
-                }
-               
-            });
+          
             setRecipes(response);
         })
         .catch((error) => {
@@ -67,7 +46,10 @@ const ProductsOwnerview = () => {
         timer: 1500
       });      
     };
-    const RecipeDetail = (params:any) => {};
+    const RecipeDetail = (params:any) => {
+      
+      navigate(`/managearticles/${params.id}`);
+    };
 
     const AddActions = React.useMemo<GridColDef[]>(() => [
         ...columns,

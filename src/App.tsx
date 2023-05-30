@@ -55,6 +55,7 @@ import { User } from './interfaces/User';
 import Print from './modules/printModule/views/Print';
 import Uploader from './modules/images/views/Uploader';
 import ArticlesAdd from './modules/productsOwner/views/ArticlesAdd';
+import ArticlesEdit from './modules/productsOwner/views/ArticlesEdit';
 
 function App() {
   const location = useLocation();
@@ -142,6 +143,7 @@ const verifyRole = () => {
               {/* <Route path="/users" element={<User />} /> */}
               <Route path="/managearticles" element={ verifyAuthentication() ? <ProductsOwnerview />: <Navigate to="/" replace />} />
               <Route path="/managearticles/add" element={ verifyAuthentication() ? <ArticlesAdd />: <Navigate to="/" replace />} />
+              <Route path="/managearticles/:id" element={ verifyAuthentication() ? <ArticlesEdit />: <Navigate to="/" replace />} />
               
               <Route path="/providers"      element={ verifyAuthentication() ?  <ProviderView /> :    <Navigate to="/" replace /> } />
               <Route path="/providers/add"  element={ verifyAuthentication() ?  <ProviderAdd /> :     <Navigate to="/" replace /> } />
