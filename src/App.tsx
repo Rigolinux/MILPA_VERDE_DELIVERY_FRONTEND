@@ -166,7 +166,6 @@ const verifyRole = () => {
 
               <Route path="/cart" element={<CartView />} />
               <Route path="/test" element={<Test />} />
-
               {/* <Route path="/history" element={<HistoryView />} />
               <Route path="/history" element={<HistoryViewAdm />} /> */}
               
@@ -176,7 +175,7 @@ const verifyRole = () => {
 
 
 
-              <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/" replace /> } />
+              <Route path="/orders/:id" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/" replace /> } />
 
               <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/" replace /> } />
 
