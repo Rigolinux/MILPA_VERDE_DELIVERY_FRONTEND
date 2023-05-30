@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import LogOutButton from '../NavBar/LogOutButton';
 import { CgShoppingCart } from "react-icons/cg";
 import { IconContext } from 'react-icons';
+import { getUserById, updateUser } from "../../api/users"; 
+import { Users } from "../../interfaces/users";
+import { useParams } from "react-router-dom";
+import UsersDetails from '../Users/views/UsersDetails';
+
 
 const MyNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -13,7 +18,37 @@ const MyNavbar: React.FC = () => {
     navigate('/');
   };
 
+  const [user, setUser] = React.useState<Users>({
+    name: '',
+    lastname: '',
+    email: '',
+    password: '',
+    role: '',
+    username: '',
+    _id: '',
+  });
+
+  const { id } = useParams();
+
+  const getUser = () => {
+    getUserById(id ?? '').then((response) => {
+      setUser(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+
+  React.useEffect(() => {
+    getUser();
+  }, []);
+
   const isLoggedIn = localStorage.getItem('user') !== null;
+
+  const username2 = localStorage.getItem('username'); 
+
+  // if (username) {
+  //   const username2 = JSON.parse(username);
+  // }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -32,9 +67,11 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div>
-          <IconContext.Provider value={{ color: 'white', size: '24px' }}>
+          <span className="text-white">{username2}</span>
+          {/* <span>{user}</span> */}
+          {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
-          </IconContext.Provider>
+          </IconContext.Provider>}
           &nbsp;&nbsp;&nbsp;&nbsp;{isLoggedIn && <LogOutButton logout={handleLogout} />}
         </div>
       </Navbar.Collapse>
