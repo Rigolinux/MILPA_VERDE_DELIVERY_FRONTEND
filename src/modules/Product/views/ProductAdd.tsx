@@ -35,7 +35,7 @@ const ProductAdd = () => {
 
       Swal.fire({
         icon: 'success',
-        title: 'Proveedor agregado',
+        title: 'Producto agregado',
         text: 'El producto ha sido agregado exitosamente.',
         confirmButtonText: 'Aceptar'
       }).then(() => {
@@ -93,8 +93,10 @@ const ProductAdd = () => {
                 type="number"
                 size="lg"
                 value={product?.price}
-                defaultValue={product?.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                defaultValue={product?.price}
                 onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
+                pattern="[1-9][0-9]*"
+                min="1"
                 required
               />
             </Form.Group>
