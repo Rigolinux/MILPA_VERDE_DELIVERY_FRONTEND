@@ -3,7 +3,7 @@ import { Recipes, RecipeDetail } from '../../../interfaces/Recipes';
 import { getRecipeById, createRecipeDetail } from '../../../api/Recipes';
 import { useParams } from 'react-router-dom';
 import { Sales } from '../../../interfaces/Sales';
-import { SaleData } from '../../../interfaces/pay';
+import { SaleData, SaleDetail } from '../../../interfaces/pay';
 
 // Importando a pay
 import { captureOrder, createaSale } from '../../../api/pay';
@@ -32,7 +32,7 @@ const Test = () => {
         const storedUser = localStorage.getItem('user');
         const parsedUser = storedUser ? JSON.parse(storedUser) : null;
         if (parsedUser) {
-          const saleDetails = ArticlesCart.map((product) => {
+          const saleDetails : any   = ArticlesCart.map((product) => {
             return {
               ID_recipe: product.ID_Product,
               dateOfbuy: date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(),
@@ -43,18 +43,18 @@ const Test = () => {
           });
           const TransferNumber2 = payerID ? payerID.toString() : '';
           const dateOfbuy2 = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-          const saleData = {
+          const saleData: SaleData = {
             ID_USER: parsedUser.user._id,
             dateOfbuy: date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear(),
-            quantity: saleDetails.reduce((total, detail) => total + detail.quantity, 0),
-            total: saleDetails.reduce((total, detail) => total + detail.total, 0),
+            quantity: saleDetails.reduce((total: any, detail: any) => total + detail.quantity, 0),
+            total: saleDetails.reduce((total: any, detail:any) => total + detail.total, 0),
             status: 'APPROVED',
             dateOfDelivered: dateOfbuy2,
             TransferNumber: TransferNumber2,
             TransferStatus: 'APPROVED',
             details: saleDetails,
           };
-          createaSale(saleData).then(() => {
+          createaSale(saleData ).then(() => {
             localStorage.removeItem('CartAticles');
             localStorage.removeItem('CartTotal');
             localStorage.removeItem('token');

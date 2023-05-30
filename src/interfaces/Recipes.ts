@@ -19,7 +19,7 @@ export interface Recipes {
 
 export interface RecipeDetail {
      _id?:            string;
-    ID_Product:     string;
+    ID_Product?:     string;
     quantity:       number;
     price:          number;
     total:          number;

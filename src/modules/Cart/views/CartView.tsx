@@ -124,7 +124,7 @@ const CartHome = () => {
               <p>Total: ${product.total.toFixed(2)}</p>
               <button
                 className='remove-button'
-                onClick={() => removeItemFromCart(product.ID_Product)}
+                onClick={() => removeItemFromCart(product.ID_Product as string)}
               >
                 Eliminar
               </button>
