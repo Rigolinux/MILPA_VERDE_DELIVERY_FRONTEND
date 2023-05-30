@@ -21,7 +21,9 @@ const ArticlesAdd = () => {
   const handleUpload = async (e: any) => {
       e.preventDefault()
       const file = e.target.files[0]
-      const url = await uploadImage(file)
+        let url = null;
+        url = await uploadImage(file)
+       
       if(url)
       setImage(url);
       setProduct({...product, Image: url});
@@ -100,6 +102,7 @@ const ArticlesAdd = () => {
             <Form.Control
               type="text"
               size="lg"
+              min={0}
               defaultValue={product?.name}
               value={product?.name}
               onChange={(e) => setProduct({...product, name: e.target.value})}
@@ -112,6 +115,7 @@ const ArticlesAdd = () => {
             <Form.Control
               type="text"
               size="lg"
+              min={0}
               defaultValue={product?.description}
               value={product?.description}
               onChange={(e) => setProduct({...product, description: e.target.value})}
@@ -124,6 +128,7 @@ const ArticlesAdd = () => {
             <Form.Control
               type="number"
               size="lg"
+              min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
               value={product?.price}
               required
@@ -135,6 +140,7 @@ const ArticlesAdd = () => {
             <Form.Control
               type="number"
               size="lg"
+              min={0}
               onChange={(e) => setProduct({...product,cost: Number(e.target.value)})}
               value={product?.cost}
               required
@@ -146,6 +152,7 @@ const ArticlesAdd = () => {
             <Form.Control
               type="number"
               size="lg"
+              min={0}
               onChange={(e) => setProduct({...product,Stock: Number(e.target.value)})}
               value={product?.Stock}
               required

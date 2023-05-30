@@ -24,6 +24,18 @@ export const CreateRecipe = async (data:any) => {
     }
 };
 
+export const DeleteRecipeFromDB =  (id: string) => {
+
+
+     api.delete(`/inventory/recipes/${id}`).then((res) => {
+
+         return res.data;
+     }).catch((error) => {
+            console.log(error);
+            return error;
+     });
+};
+
 export const getRecipeById = async (id: string) => {
     try {
         const response = await api.get(`/inventory/recipesh/${id}`);
