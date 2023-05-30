@@ -58,6 +58,7 @@ const MyNavbar: React.FC = () => {
           <Nav.Link onClick={() => navigate("/about")}>Acerca</Nav.Link>
           {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/salesgraphics")}>Ventas</Nav.Link>}
           {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
+          {isLoggedIn && <Nav.Link onClick={() => navigate("/history")}>Historial</Nav.Link>}
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         {isLoggedIn && (

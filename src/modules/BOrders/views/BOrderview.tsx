@@ -96,14 +96,31 @@ const BOrderview = () => {
       
     
     <div>
-      <ReactToPrint
-        trigger={() => <button>Imprimir</button>}
-        content={() => componentRef.current}
-      />
       
       <div ref={componentRef}  >
       <PrintComponent Details={invoice} />
       </div> 
+      
+      {/* <ReactToPrint
+        trigger={() => <button>Imprimir</button>}
+        content={() => componentRef.current}
+      /> */}
+      
+      {/* <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <ReactToPrint
+          trigger={() => <button style={{ padding: '10px 20px', fontSize: '16px' }}>Imprimir</button>}
+          content={() => componentRef.current}
+        />
+      </div> */}
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <ReactToPrint
+          trigger={() => <button className='pay-button' >Imprimir</button>}
+          content={() => componentRef.current}
+        />
+      </div>
+      
+
 
     </div>
     
