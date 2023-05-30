@@ -31,6 +31,10 @@ import ProductCustomerHomeDetails from './modules/ProductsCustomer/views/Product
 import CartView from './modules/Cart/views/CartView';
 import Test from './modules/Cart/views/Test';
 
+// Imports de Historial
+import HistoryView from './modules/history/views/HistoryView';
+import HistoryViewAdm from './modules/history/views/HistoryViewAdm';
+
 import ArticlesView from './modules/ProductsCustomer/views/ArticlesView';
 // import ArticlesDetails from './modules/ProductsCustomer/views/ArticlesDetails';
 
@@ -100,6 +104,12 @@ const verifyAuthentication = () => {
   return false
 }
 
+const verifyRole = () => {
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser).user : '';
+  return user.role === 'admin';
+};
+
   return (
     <div className="App">
       
@@ -119,8 +129,8 @@ const verifyAuthentication = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           {/* <Route path="/articles" element={<ProductCustomerHome />} /> */}
-              <Route path="/about"  element={ <Navigate to="/about" replace />} />
-              <Route path="/banner" element={<Banner/>} />
+              <Route path="/about"  element={ <About />} />
+              <Route path="/banner" element={ <Banner />} />
               <Route path="/"       element={ <Navigate to="/banner" replace />} />
         <Route element={<ProtectedRoute />} >
 
@@ -150,6 +160,15 @@ const verifyAuthentication = () => {
 
               <Route path="/cart" element={<CartView />} />
               <Route path="/test" element={<Test />} />
+
+              {/* <Route path="/history" element={<HistoryView />} />
+              <Route path="/history" element={<HistoryViewAdm />} /> */}
+              
+
+              
+              <Route path="/history" element={verifyRole() ? <HistoryViewAdm /> : <HistoryView />} />
+
+
 
               <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
 

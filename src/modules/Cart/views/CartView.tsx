@@ -9,6 +9,7 @@ import { sendtoBillPaypal } from '../../../api/pay';
 
 // importando css
 import '../css/CartCSS.css';
+import Swal from 'sweetalert2';
 
 const CartHome = () => {
   const [articlesDetail, setArticlesDetail] = React.useState<RecipeDetail[]>([]);
@@ -63,14 +64,30 @@ const CartHome = () => {
     //   return error;
     // }
 
-    try {
+    // try {
       const total = parseFloat((localStorage.getItem('CartResmTotal') || '0'));
-      const paymentLink = await sendtoBillPaypal(total);
-      redirectToPayment(paymentLink);
-    } catch (error) {
-      console.log(error);
-    }
 
+      // Validando que el total a pagar sea mayor a 0
+      if (total > 0) {
+        try {
+          const paymentLink = await sendtoBillPaypal(total);
+          redirectToPayment(paymentLink);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No hay productos en el carrito',
+          confirmButtonText: 'Aceptar',
+        });
+      }
+    //   const paymentLink = await sendtoBillPaypal(total);
+    //   redirectToPayment(paymentLink);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   // Función para redirigir al enlace de pago
