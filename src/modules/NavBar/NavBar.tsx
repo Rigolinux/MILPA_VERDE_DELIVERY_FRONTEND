@@ -32,9 +32,9 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div>
-          <IconContext.Provider value={{ color: 'white', size: '24px' }}>
+        {isLoggedIn &&<IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
-          </IconContext.Provider>
+          </IconContext.Provider>}
           &nbsp;&nbsp;&nbsp;&nbsp;{isLoggedIn && <LogOutButton logout={handleLogout} />}
         </div>
       </Navbar.Collapse>
