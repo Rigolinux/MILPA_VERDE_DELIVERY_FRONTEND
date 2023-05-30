@@ -133,6 +133,7 @@ const verifyRole = () => {
           {/* <Route path="/articles" element={<ProductCustomerHome />} /> */}
               <Route path="/about"  element={<About/>} />
               <Route path="/" element={<Banner/>} />
+              {/* <Route path="/banner" element={<Banner/>} /> */}
             
         <Route element={<ProtectedRoute />} >
 

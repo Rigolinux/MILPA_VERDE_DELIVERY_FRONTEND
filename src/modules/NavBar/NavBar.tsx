@@ -41,11 +41,11 @@ const MyNavbar: React.FC = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       &nbsp;&nbsp;&nbsp;&nbsp
       
-      <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
+      <Navbar.Brand href="/">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
-          <Nav.Link href="/banner">Inicio</Nav.Link>
+          <Nav.Link href="/">Inicio</Nav.Link>
           {isLoggedIn && <Nav.Link onClick={() => navigate("/providers")}>Proveedores</Nav.Link>}
           {isLoggedIn && <Nav.Link onClick={() => navigate("/products")}>Productos</Nav.Link>}
           {isLoggedIn && <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link>}
