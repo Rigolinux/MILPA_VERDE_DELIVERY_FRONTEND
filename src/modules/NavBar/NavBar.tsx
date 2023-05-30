@@ -43,7 +43,7 @@ const MyNavbar: React.FC = () => {
       
       <Navbar.Brand href="/">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
+      <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Inicio</Nav.Link>
           {isLoggedIn && <Nav.Link onClick={() => navigate("/providers")}>Proveedores</Nav.Link>}
@@ -54,13 +54,17 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
-        <div className='al'>
-         {user.name != ''&& user ? <Navbar.Brand>{user.username}</Navbar.Brand>  : '' }
-          {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
-            <CgShoppingCart onClick={() => navigate("/cart")}/>
-          </IconContext.Provider>}
-          &nbsp;&nbsp;&nbsp;&nbsp;{isLoggedIn && <LogOutButton logout={handleLogout} />}
-        </div>
+        {isLoggedIn && (
+          <Nav>
+            {user.name !== '' && user && (
+              <Nav.Link>{user.username}</Nav.Link>
+            )}
+            <IconContext.Provider value={{ color: 'white', size: '24px' }}>
+              <CgShoppingCart onClick={() => navigate("/cart")} />
+            </IconContext.Provider>
+            <LogOutButton logout={handleLogout} />
+          </Nav>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
