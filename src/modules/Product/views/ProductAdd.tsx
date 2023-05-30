@@ -33,6 +33,16 @@ const ProductAdd = () => {
         return;
       }
 
+      if(product?.price <0) {
+        Swal.fire({
+          icon: 'question',
+          title: 'Valores negativos',
+          text: '¡El precio no puede ser negativo!',
+        })
+        console.log('Error: Valores negativos');
+        return;
+      }
+
       Swal.fire({
         icon: 'success',
         title: 'Producto agregado',
@@ -95,8 +105,8 @@ const ProductAdd = () => {
                 value={product?.price}
                 defaultValue={product?.price}
                 onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
-                pattern="[1-9][0-9]*"
-                min="1"
+                pattern="/^\d*\.?\d+$/"
+                //min="1"
                 required
               />
             </Form.Group>

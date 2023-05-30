@@ -50,6 +50,15 @@ const ProductDetails = () => {
         setProduct({...product, image: url});
     }
 
+    // const ValidarPrecio = Math.sign(parseInt(localStorage.getItem('product')));
+
+    // const validatePrice = () => {
+    //   const storedPrice = localStorage.getItem('product');
+    //   const precio = storedPrice ? JSON.parse(storedPrice).product : '';
+    //   const precio2 = Math.sign(precio.price);
+    //   precio2>=0 
+    // };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -65,6 +74,16 @@ const ProductDetails = () => {
             text: '¡Por favor ingrese todos los campos!',
           })
           console.log('Error: Campos vacios');
+          return;
+        }
+
+        if(product?.price <0) {
+          Swal.fire({
+            icon: 'question',
+            title: 'Valores negativos',
+            text: '¡El precio no puede ser negativo!',
+          })
+          console.log('Error: Valores negativos');
           return;
         }
         
@@ -122,8 +141,8 @@ const ProductDetails = () => {
             size="lg"
             onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
             value={product?.price}
-            pattern="[1-9][0-9]*"
-            min="1"
+            pattern="/^(?!-)\d*\.?\d+$/"
+            //min={0}
             required
             // defaultValue={product?.price}
           />
@@ -162,11 +181,11 @@ const ProductDetails = () => {
               />
             </Form.Group>
 
-        <Form.Group controlId="formFileMultiple2" className="fileinput">
-          {/* <Form.Label>Imagen</Form.Label> */}
+        {/* <Form.Group controlId="formFileMultiple2" className="fileinput">
+          <Form.Label>Imagen</Form.Label>
           <Form.Control type="file"   onChange={(e) => handleUpload(e)} />
-          {/* <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} /> */}
-        </Form.Group>
+          <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} />
+        </Form.Group> */}
 
 
         {/* <Form.Group className="mb-3">
