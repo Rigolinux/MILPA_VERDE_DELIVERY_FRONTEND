@@ -76,7 +76,7 @@ const ArticlesAdd = () => {
         }
         
         Swal.fire('Éxito', 'Producto agregado correctamente', 'success');
-        navigate('/products');
+        navigate('/managearticles');
     }).catch((error) => {
       console.log(error);
       Swal.fire({
