@@ -8,20 +8,21 @@ import { IconContext } from 'react-icons';
 import { Users } from "../../interfaces/users";
 import { useParams } from "react-router-dom";
 import { getUserById, updateUser } from "../../api/users";
+import { useEffect } from 'react';
 
 
 const MyNavbar: React.FC = () => {
   const navigate = useNavigate();
 
-  // const [user, setUser] = React.useState<Users>({
-  //   name: '',
-  //   lastname: '',
-  //   email: '',
-  //   password: '',
-  //   role: '',
-  //   username: '',
-  //   _id: '',
-  // });
+  const [user, setUser] = React.useState<Users>({
+    name: '',
+    lastname: '',
+    email: '',
+    password: '',
+    role: '',
+    username: '',
+    _id: '',
+  });
 
   // const { id } = useParams();
 
@@ -44,6 +45,11 @@ const MyNavbar: React.FC = () => {
 
   const isLoggedIn = localStorage.getItem('user') !== null;
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser).user : "";
+    setUser(user);
+  }, [isLoggedIn]);
   // const storedUser = localStorage.getItem('user');
   // const user2 = storedUser ? JSON.parse(storedUser).user : "";
   
@@ -51,7 +57,8 @@ const MyNavbar: React.FC = () => {
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      &nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp
+      
       <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
@@ -65,8 +72,9 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
-        <div>
+        <div className='al'>
           {/* <span className="text-white">{storedUser}</span> */}
+         {user.name != ''&& user ? <Navbar.Brand>{user.username}</Navbar.Brand>  : '' }
           {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
           </IconContext.Provider>}

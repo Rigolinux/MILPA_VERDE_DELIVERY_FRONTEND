@@ -87,8 +87,8 @@ function App() {
   
   const [footer, setfooter] = useState(false)
   useEffect(() => {
-    //Conditions to validate footer only below banner view
-    if(location.pathname === '/banner'){
+    //Conditions to validate footer only below  view
+    if(location.pathname === '/'){
       setfooter(false)
     }else{
       setfooter(true)
@@ -132,29 +132,29 @@ const verifyRole = () => {
           <Route path="/uploaderImg" element={<Uploader />} />
           {/* <Route path="/articles" element={<ProductCustomerHome />} /> */}
               <Route path="/about"  element={<About/>} />
-              <Route path="/banner" element={<Banner/>} />
-              <Route path="/"       element={ <Navigate to="/banner" replace />} />
+              <Route path="/" element={<Banner/>} />
+            
         <Route element={<ProtectedRoute />} >
 
             <Route path="/home/products" element={<View />} />
               {/* <Route path="/users" element={<User />} /> */}
               <Route path="/managearticles" element={ <ProductsOwnerview />} />
-              <Route path="/providers"      element={ verifyAuthentication() ?  <ProviderView /> :    <Navigate to="/banner" replace /> } />
-              <Route path="/providers/add"  element={ verifyAuthentication() ?  <ProviderAdd /> :     <Navigate to="/banner" replace /> } />
-              <Route path="/providers/:id"  element={ verifyAuthentication() ?  <ProviderDetails/> :  <Navigate to="/banner" replace /> } />
+              <Route path="/providers"      element={ verifyAuthentication() ?  <ProviderView /> :    <Navigate to="/" replace /> } />
+              <Route path="/providers/add"  element={ verifyAuthentication() ?  <ProviderAdd /> :     <Navigate to="/" replace /> } />
+              <Route path="/providers/:id"  element={ verifyAuthentication() ?  <ProviderDetails/> :  <Navigate to="/" replace /> } />
 
-              <Route path="/products"     element={ verifyAuthentication() ?  <ProductView /> :     <Navigate to="/banner" replace /> } />
-              <Route path="/products/add" element={ verifyAuthentication() ?  <ProductAdd /> :      <Navigate to="/banner" replace /> } />
-              <Route path="/products/:id" element={ verifyAuthentication() ?  <ProductDetails /> :  <Navigate to="/banner" replace /> } />
+              <Route path="/products"     element={ verifyAuthentication() ?  <ProductView /> :     <Navigate to="/" replace /> } />
+              <Route path="/products/add" element={ verifyAuthentication() ?  <ProductAdd /> :      <Navigate to="/" replace /> } />
+              <Route path="/products/:id" element={ verifyAuthentication() ?  <ProductDetails /> :  <Navigate to="/" replace /> } />
 
               {/* <Route path="/sales" element={<SalesGraphicsView />} /> */}
-              <Route path="/salesgraphics" element={ verifyAuthentication() ?  <SalesGraphicsView /> : <Navigate to="/banner" replace /> } />
+              <Route path="/salesgraphics" element={ verifyAuthentication() ?  <SalesGraphicsView /> : <Navigate to="/" replace /> } />
 
-              <Route path="/sales" element={ verifyAuthentication() ?  <SalesView /> : <Navigate to="/banner" replace /> } />
+              <Route path="/sales" element={ verifyAuthentication() ?  <SalesView /> : <Navigate to="/" replace /> } />
 
-              <Route path="/users"      element={ verifyAuthentication() ?  <UsersView /> :    <Navigate to="/banner" replace /> } />
-              <Route path="/users/add"  element={ verifyAuthentication() ?  <UsersAdd /> :     <Navigate to="/banner" replace /> } />
-              <Route path="/users/:id"  element={ verifyAuthentication() ?  <UsersDetails /> : <Navigate to="/banner" replace /> } />
+              <Route path="/users"      element={ verifyAuthentication() ?  <UsersView /> :    <Navigate to="/" replace /> } />
+              <Route path="/users/add"  element={ verifyAuthentication() ?  <UsersAdd /> :     <Navigate to="/" replace /> } />
+              <Route path="/users/:id"  element={ verifyAuthentication() ?  <UsersDetails /> : <Navigate to="/" replace /> } />
 
               <Route path="/articles"     element={<ProductCustomerHome />} />
               <Route path="/articles/:id" element={<ProductCustomerHomeDetails  />} />
@@ -168,13 +168,13 @@ const verifyRole = () => {
               
 
               
-              <Route path="/history" element={verifyRole() ? <HistoryViewAdm /> : <HistoryView />} />
+              <Route path="/history" element={verifyAuthentication() ? (verifyRole() ? <HistoryViewAdm /> : <HistoryView />) : <Navigate to="/" replace /> } />
 
 
 
-              <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/banner" replace /> } />
+              <Route path="/orders" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/" replace /> } />
 
-              <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/banner" replace /> } />
+              <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/" replace /> } />
 
               
 
