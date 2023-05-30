@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import Acercaimg from './Acercaimg.jpg';
 
-const About = () => {
+const about = () => {
   return (
     <Container>
       <Row className="mt-5 mb-4 d-flex align-items-center">
@@ -43,4 +43,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default about;
