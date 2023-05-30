@@ -122,6 +122,8 @@ const ProductDetails = () => {
             size="lg"
             onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
             value={product?.price}
+            pattern="[1-9][0-9]*"
+            min="1"
             required
             // defaultValue={product?.price}
           />
