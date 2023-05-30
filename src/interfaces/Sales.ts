@@ -5,6 +5,14 @@ enum Status {
     DELIVERED = 'DELIVERED',
   }
 
+export interface Detail {
+  ID_recipe: string,
+  dateOfbuy: string,
+  quantity: number,
+  price: number,
+  total: number,
+}
+
 export interface Sales {
     ID_USER: string,
     dateOfbuy: string,
@@ -14,4 +22,5 @@ export interface Sales {
     dateOfDelivered: string,
     TransferNumber:     string,
     TransferStatus: Status, //base a pago
+    details?: Detail[],
 }

@@ -49,6 +49,18 @@ export const getSalesHeaderById = async (id: string) => {
   }
 };
 
+export const getAllSalesDetailsById = async (id: string) => {
+  try {
+   // salesDetails/searchbyIDSale/:id
+    const response = await api.get(`/sales/salesDetails/searchbyIDSale/${id}`);
+    return response.data;
+  }
+  catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 // Get all salesDetails by ID
 export const getSalesDetailById = async (id: string) => {
   try {
