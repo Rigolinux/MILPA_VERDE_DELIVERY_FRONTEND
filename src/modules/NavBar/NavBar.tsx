@@ -44,8 +44,7 @@ const MyNavbar: React.FC = () => {
 
   const isLoggedIn = localStorage.getItem('user') !== null;
 
-  const storedUser = localStorage.getItem('user');
-
+  // const storedUser = localStorage.getItem('user');
   // const user2 = storedUser ? JSON.parse(storedUser).user : "";
   
   // console.log(user2); 
@@ -67,7 +66,7 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div>
-          <span className="text-white">{storedUser}</span>
+          {/* <span className="text-white">{storedUser}</span> */}
           {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
           </IconContext.Provider>}
