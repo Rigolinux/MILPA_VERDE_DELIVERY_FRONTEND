@@ -28,6 +28,12 @@ const MyNavbar: React.FC = () => {
     navigate('/');
   };
 
+  const verifyRole = () => {
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser).user : '';
+    return user.role === 'admin';
+  };
+
   const isLoggedIn = localStorage.getItem('user') !== null;
 
   useEffect(() => {
@@ -41,16 +47,16 @@ const MyNavbar: React.FC = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       &nbsp;&nbsp;&nbsp;&nbsp
       
-      <Navbar.Brand href="/">MilpaVerde</Navbar.Brand>
+      <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Inicio</Nav.Link>
-          {isLoggedIn && <Nav.Link onClick={() => navigate("/providers")}>Proveedores</Nav.Link>}
-          {isLoggedIn && <Nav.Link onClick={() => navigate("/products")}>Productos</Nav.Link>}
-          {isLoggedIn && <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link>}
+          {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/providers")}>Proveedores</Nav.Link>}
+          {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/products")}>Productos</Nav.Link>}
+          {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link>}
           <Nav.Link onClick={() => navigate("/about")}>Acerca</Nav.Link>
-          {isLoggedIn && <Nav.Link onClick={() => navigate("/salesgraphics")}>Ventas</Nav.Link>}
+          {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/salesgraphics")}>Ventas</Nav.Link>}
           {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
