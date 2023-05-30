@@ -7,7 +7,7 @@ enum status {
 }
 
 export interface Recipes {
-    _id : string;
+    _id? : string;
     name : string;
     description : string;
     Stock: number;
@@ -18,7 +18,7 @@ export interface Recipes {
 }
 
 export interface RecipeDetail {
-    // _id:            string;
+     _id?:            string;
     ID_Product:     string;
     quantity:       number;
     price:          number;

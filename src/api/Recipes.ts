@@ -1,9 +1,21 @@
 import api from "./axios";
 import { RecipeDetail } from "../interfaces/Recipes";
+import { data } from '../modules/SalesGraphics/Graphics/LinesCharts';
 
 export const getAllRecipes = async () => {
     try {
         const Recipes = await api.get("/inventory/recipes")
+        return Recipes.data;
+
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+};
+
+export const CreateRecipe = async (data:any) => {
+    try {
+        const Recipes = await api.post("/inventory/recipes", data)
         return Recipes.data;
 
     } catch (error) {

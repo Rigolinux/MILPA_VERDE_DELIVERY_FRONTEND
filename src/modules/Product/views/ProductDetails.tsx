@@ -39,15 +39,15 @@ const ProductDetails = () => {
     getProduct();
   }, []);
 
-  const [image, setImage] = React.useState('https://res.cloudinary.com/djalhvlj2/image/upload/v1685410352/ror0nq9xkp819jis1hno.jpg')
+  const [image, setImage] = React.useState('')
 
     const handleUpload = async (e: any) => {
         e.preventDefault()
         const file = e.target.files[0]
         const url = await uploadImage(file)
-        console.log(url)
         if(url)
-        setImage(url)
+        setImage(url);
+        setProduct({...product, image: url});
     }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -153,7 +153,8 @@ const ProductDetails = () => {
 
         <Form.Group controlId="formFileMultiple2" className="fileinput">
           {/* <Form.Label>Imagen</Form.Label> */}
-          <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} />
+          <Form.Control type="file"   onChange={(e) => handleUpload(e)} />
+          {/* <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} /> */}
         </Form.Group>
 
         {/* <Form.Group className="mb-3">
