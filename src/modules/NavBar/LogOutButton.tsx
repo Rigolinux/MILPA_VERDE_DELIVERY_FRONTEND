@@ -9,22 +9,29 @@ import User from '../user/views/User';
 import ProductView from '../Product/views/ProductView';
 import UserView from '../Users/views/UsersView';
 
-const LogOut = () => {
+interface LogOutProps {
+  logout: () => void;
+}
+
+const LogOut: React.FC<LogOutProps> = ({ logout }) => {
  
   const navigate = useNavigate()
-const logout = () => {
+const handleLogout = () => {
   localStorage.removeItem('user');
+  logout();
   navigate('/login');
 }
   
   return (
     <>
     
-    <button 
-    onClick={() => {
-      logout()
-    }}
-     type="button" className="btn btn-danger">LogOut</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button
+        onClick={handleLogout}
+        type="button"
+        className="btn btn-danger"
+      >
+        Log Out
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;
 
   </>
   )

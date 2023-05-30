@@ -6,6 +6,10 @@ import { getProductById, updateProduct } from "../../../api/product";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import { FilledInput } from '@mui/material';
+
+import {uploadImage} from '../../../common/Config_clodinary'
+import ProductDetails2 from '../../Product/views/ProductDetails.css'
 
 const ProductDetails = () => {
 
@@ -34,6 +38,17 @@ const ProductDetails = () => {
   React.useEffect(() => {
     getProduct();
   }, []);
+
+  const [image, setImage] = React.useState('https://res.cloudinary.com/djalhvlj2/image/upload/v1685410352/ror0nq9xkp819jis1hno.jpg')
+
+    const handleUpload = async (e: any) => {
+        e.preventDefault()
+        const file = e.target.files[0]
+        const url = await uploadImage(file)
+        console.log(url)
+        if(url)
+        setImage(url)
+    }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -101,7 +116,7 @@ const ProductDetails = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Precio</Form.Label>
+          <Form.Label>Precio $</Form.Label>
           <Form.Control
             type="number"
             size="lg"
@@ -112,7 +127,7 @@ const ProductDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Label>Imagen</Form.Label>
           <Form.Control
             type="text"
@@ -122,12 +137,24 @@ const ProductDetails = () => {
             required
             onChange={(e) => setProduct({...product, image: e.target.value})}
           />
-        </Form.Group>
+        </Form.Group> */}
+
+        {/* <Form.Group className="mb-3">
+          <Form.Label>Imagen</Form.Label>
+            <img src={image} alt="imagen" />
+            <FilledInput type="file" onChange={(e) => setProduct({...product, image: e.target.value})} />
+        </Form.Group> */}
+
 
         {/* <Form.Group controlId="formFileMultiple2" className="mb-3">
           <Form.Label>Imagen</Form.Label>
           <Form.Control type="file" multiple id="image" required value={product?.image} defaultValue={product?.image} onChange={(e) => setProduct({...product, image: e.target.value})} />
         </Form.Group> */}
+
+        <Form.Group controlId="formFileMultiple2" className="fileinput">
+          {/* <Form.Label>Imagen</Form.Label> */}
+          <FilledInput className="fileinput" type="file" onChange={(e) => setProduct({...product, image: e.target.value})} />
+        </Form.Group>
 
         {/* <Form.Group className="mb-3">
           <Form.Label>Categoria</Form.Label>
