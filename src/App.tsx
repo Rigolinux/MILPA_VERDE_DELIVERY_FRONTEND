@@ -49,6 +49,7 @@ import Footer from './modules/Footer/Footer';
 import PaymentView from './modules/paymentMethod/views/PaymentView';
 import { User } from './interfaces/User';
 import Print from './modules/printModule/views/Print';
+import Uploader from './modules/images/views/Uploader';
 
 function App() {
   const location = useLocation();
@@ -118,6 +119,7 @@ const verifyAuthentication = () => {
         
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/uploaderImg" element={<Uploader />} />
           {/* <Route path="/articles" element={<ProductCustomerHome />} /> */}
               <Route path="/about"  element={<About/>} />
               <Route path="/banner" element={<Banner/>} />
