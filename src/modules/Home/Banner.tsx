@@ -18,7 +18,7 @@ const Banner = () => {
                         <div className="banner-cta v2"><a className="a2" href="/articles">Shop now</a></div>
                     </div>
                 </div>
-                <img className="banner-img" src={BannerImg} />
+                    <img className="banner-img" src={BannerImg} />
             </div>
         </div>
     );
