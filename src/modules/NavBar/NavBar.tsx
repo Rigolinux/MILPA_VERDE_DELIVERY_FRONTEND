@@ -4,51 +4,51 @@ import { useNavigate } from 'react-router-dom';
 import LogOutButton from '../NavBar/LogOutButton';
 import { CgShoppingCart } from "react-icons/cg";
 import { IconContext } from 'react-icons';
-import { getUserById, updateUser } from "../../api/users"; 
+
 import { Users } from "../../interfaces/users";
 import { useParams } from "react-router-dom";
-import UsersDetails from '../Users/views/UsersDetails';
+import { getUserById, updateUser } from "../../api/users";
 
 
 const MyNavbar: React.FC = () => {
   const navigate = useNavigate();
+
+  // const [user, setUser] = React.useState<Users>({
+  //   name: '',
+  //   lastname: '',
+  //   email: '',
+  //   password: '',
+  //   role: '',
+  //   username: '',
+  //   _id: '',
+  // });
+
+  // const { id } = useParams();
+
+  // const getUser = () => {
+  //   getUserById(id ?? '').then((response) => {
+  //     setUser(response);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+  // };
+
+  // React.useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     navigate('/');
   };
 
-  const [user, setUser] = React.useState<Users>({
-    name: '',
-    lastname: '',
-    email: '',
-    password: '',
-    role: '',
-    username: '',
-    _id: '',
-  });
-
-  const { id } = useParams();
-
-  const getUser = () => {
-    getUserById(id ?? '').then((response) => {
-      setUser(response);
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
-
-  React.useEffect(() => {
-    getUser();
-  }, []);
-
   const isLoggedIn = localStorage.getItem('user') !== null;
 
-  const username2 = localStorage.getItem('username'); 
+  const storedUser = localStorage.getItem('user');
 
-  // if (username) {
-  //   const username2 = JSON.parse(username);
-  // }
+  // const user2 = storedUser ? JSON.parse(storedUser).user : "";
+  
+  // console.log(user2); 
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -67,8 +67,7 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
         <div>
-          <span className="text-white">{username2}</span>
-          {/* <span>{user}</span> */}
+          <span className="text-white">{storedUser}</span>
           {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
             <CgShoppingCart onClick={() => navigate("/cart")}/>
           </IconContext.Provider>}
