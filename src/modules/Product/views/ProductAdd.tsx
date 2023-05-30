@@ -88,7 +88,7 @@ const ProductAdd = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Precio</Form.Label>
+              <Form.Label>Precio $</Form.Label>
               <Form.Control
                 type="number"
                 size="lg"
