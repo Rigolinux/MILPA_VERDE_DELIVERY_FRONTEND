@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import LogOut from '../NavBar/LogOutButton';
+import LogOutButton from '../NavBar/LogOutButton';
 
 const MyNavbar: React.FC = () => {
   const navigate = useNavigate();
@@ -21,16 +21,17 @@ const MyNavbar: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
           <Nav.Link href="/banner">Inicio</Nav.Link>
-          <Nav.Link href="/providers">Proveedores</Nav.Link>
-          <Nav.Link href="/products">Productos</Nav.Link>
-          <Nav.Link href="/users">Users</Nav.Link>
+          {isLoggedIn && <Nav.Link href="/providers">Proveedores</Nav.Link>}
+          {isLoggedIn && <Nav.Link href="/products">Productos</Nav.Link>}
+          {isLoggedIn && <Nav.Link href="/users">Users</Nav.Link>}
           <Nav.Link href="/About">Acerca</Nav.Link>
-          <Nav.Link href="/salesgraphics">Ventas</Nav.Link>
-          <Nav.Link href="/articles">Articulos</Nav.Link>
-          <Nav.Link href="/cart">Carrito</Nav.Link>
+          {isLoggedIn && <Nav.Link href="/salesgraphics">Ventas</Nav.Link>}
+          {isLoggedIn && <Nav.Link href="/articles">Articulos</Nav.Link>}
+          {isLoggedIn && <Nav.Link href="/cart">Carrito</Nav.Link>}
+          {isLoggedIn ? null : <Nav.Link href="/login">Login</Nav.Link>}
         </Nav>
         <div>
-          {isLoggedIn ? <LogOut logout={handleLogout} /> : null}
+          {isLoggedIn && <LogOutButton logout={handleLogout} />}
         </div>
       </Navbar.Collapse>
     </Navbar>
