@@ -48,8 +48,8 @@ const MyNavbar: React.FC = () => {
       &nbsp;&nbsp;&nbsp;&nbsp
       
       <Navbar.Brand href="/banner">MilpaVerde</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-between">
         <Nav className="mr-auto">
           <Nav.Link href="/">Inicio</Nav.Link>
           {isLoggedIn && verifyRole() && <Nav.Link onClick={() => navigate("/providers")}>Proveedores</Nav.Link>}
@@ -60,17 +60,13 @@ const MyNavbar: React.FC = () => {
           {isLoggedIn && <Nav.Link onClick={() => navigate("/articles")}>Articulos</Nav.Link>}
           {isLoggedIn ? null : <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
         </Nav>
-        {isLoggedIn && (
-          <Nav>
-            {user.name !== '' && user && (
-              <Nav.Link>{user.username}</Nav.Link>
-            )}
-            <IconContext.Provider value={{ color: 'white', size: '24px' }}>
-              <CgShoppingCart onClick={() => navigate("/cart")} />
-            </IconContext.Provider>
-            <LogOutButton logout={handleLogout} />
-          </Nav>
-        )}
+        <div className='sticky-xl-top mr-auto' >
+         {user.name != ''&& user ? <Navbar.Brand className="align-middle">{user.username}</Navbar.Brand>  : '' }
+          {isLoggedIn && <IconContext.Provider value={{ color: 'white', size: '24px' }}>
+            <CgShoppingCart onClick={() => navigate("/cart")}/>
+          </IconContext.Provider>}
+          &nbsp;&nbsp;&nbsp;&nbsp;{isLoggedIn && <LogOutButton logout={handleLogout} />}
+        </div>
       </Navbar.Collapse>
     </Navbar>
   );
