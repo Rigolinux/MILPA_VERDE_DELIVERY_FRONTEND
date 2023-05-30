@@ -143,11 +143,11 @@ export default function SignIn() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/*<Grid item xs>
                 <Link href="#" variant="body2">
                   ¿Olvidaste contraseña?
                 </Link>
-              </Grid>
+              </Grid>*/}
               <Grid item>
                 <Link href="/register" variant="body2">
                   {"¿No tienes cuenta? Sign Up"}
