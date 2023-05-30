@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { GridColDef } from '@mui/x-data-grid';
 import { columns } from '../helpers/ColumnHistoryConfig';
+import PrintIcon from '@mui/icons-material/Print';
 import Swal from 'sweetalert2';
 
 
@@ -37,7 +38,8 @@ const HistoryView = () => {
   };
 
   const historyDetail = (params: any) => {
-    navigate(`/history/${params.id}`);
+    // navigate(`/history/${params.id}`);
+    navigate(`/orders/${params.id}`);
   };
 
   const logout = () => {
@@ -83,9 +85,14 @@ const HistoryView = () => {
         //   onClick={() => historyDetail(params)}
         // />,
         <GridActionsCellItem
-          icon={<DeleteIcon />}
-          label="Eliminar"
-          onClick={() => deleteHistory(params)}
+        icon={<DeleteIcon />}
+        label="Eliminar"
+        onClick={() => deleteHistory(params)}
+        />,
+        <GridActionsCellItem
+          icon={<PrintIcon />}
+          label="Imprimir"
+          onClick={() => historyDetail(params)}
         />,
       ],
     },

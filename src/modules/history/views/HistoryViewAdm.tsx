@@ -15,6 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { GridColDef } from '@mui/x-data-grid';
 import { columns } from '../helpers/ColumnHistoryConfig';
 import Swal from 'sweetalert2';
+import PrintIcon from '@mui/icons-material/Print';
 
 const HistoryViewAdm = () => {
   console.log('HistoryViewAdm');
@@ -37,7 +38,8 @@ const HistoryViewAdm = () => {
   };
 
   const historyDetail = (params: any) => {
-    navigate(`/history/${params.id}`);
+    // navigate(`/history/${params.id}`);
+    navigate(`/orders/${params.id}`);
   };
 
   const logout = () => {
@@ -83,9 +85,14 @@ const HistoryViewAdm = () => {
         //   onClick={() => historyDetail(params)}
         // />,
         <GridActionsCellItem
-          icon={<DeleteIcon />}
-          label="Eliminar"
-          onClick={() => deleteHistory(params)}
+        icon={<DeleteIcon />}
+        label="Eliminar"
+        onClick={() => deleteHistory(params)}
+        />,
+        <GridActionsCellItem
+          icon={<PrintIcon />}
+          label="Imprimir"
+          onClick={() => historyDetail(params)}
         />,
       ],
     },

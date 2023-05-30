@@ -7,6 +7,7 @@ enum status {
 }
 
 export interface Recipes {
+    __v?: number;
     _id? : string;
     name : string;
     description : string;
