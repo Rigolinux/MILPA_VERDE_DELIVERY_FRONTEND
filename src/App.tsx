@@ -178,7 +178,7 @@ const verifyRole = () => {
 
 
 
-              <Route path="/orders/:id" element={ verifyAuthentication() ?  <BOrderview/> : <Navigate to="/" replace /> } />
+              <Route path="/orders/:id" element={ <BOrderview/> } />
 
               <Route path="/payment" element={ verifyAuthentication() ?  <PaymentView /> : <Navigate to="/" replace /> } />
 
