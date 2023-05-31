@@ -171,7 +171,7 @@ const ArticlesEdit = () => {
           <Form.Group className="mb-3">
             <Form.Label>Precio $</Form.Label>
             <Form.Control
-              type="float"
+              type="number"
               size="lg"
               //min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
