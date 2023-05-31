@@ -128,9 +128,10 @@ const ArticlesAdd = () => {
             <Form.Control
               type="number"
               size="lg"
-              min={0}
+              //min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
               value={product?.price}
+              pattern="/^(?!-)\d*\.?\d+$/"
               required
               // defaultValue={product?.price}
             />
@@ -140,9 +141,10 @@ const ArticlesAdd = () => {
             <Form.Control
               type="number"
               size="lg"
-              min={0}
+              //min={0}
               onChange={(e) => setProduct({...product,cost: Number(e.target.value)})}
               value={product?.cost}
+              pattern="/^(?!-)\d*\.?\d+$/"
               required
               // defaultValue={product?.price}
             />

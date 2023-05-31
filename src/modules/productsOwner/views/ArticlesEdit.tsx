@@ -173,9 +173,10 @@ const ArticlesEdit = () => {
             <Form.Control
               type="float"
               size="lg"
-              min={0}
+              //min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
               value={product?.price}
+              pattern="/^(?!-)\d*\.?\d+$/"
               required
               // defaultValue={product?.price}
             />
