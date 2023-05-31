@@ -131,7 +131,7 @@ const ArticlesAdd = () => {
               //min={0}
               onChange={(e) => setProduct({...product, price: Number(e.target.value)})}
               value={product?.price}
-              pattern="/^(?!-)\d*\.?\d+$/"
+              //pattern="/^(?!-)\d*\.?\d+$/"
               required
               // defaultValue={product?.price}
             />
